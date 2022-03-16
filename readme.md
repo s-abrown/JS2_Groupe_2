@@ -21,6 +21,10 @@ Lorsqu'un message avec une priorité maximale est envoyé, une notification est 
 - Possibilité de créer des groupes et y ajouter des messages personnalisés
 - etc.
 
+# Analyse concurentielle, état de l'art
+
+# Analyse de faisabilité
+
 # Illustrations et images
 (à faire)
 
