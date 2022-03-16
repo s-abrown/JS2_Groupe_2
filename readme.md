@@ -21,10 +21,6 @@ Lorsqu'un message avec une priorité maximale est envoyé, une notification est 
 - Possibilité de créer des groupes et y ajouter des messages personnalisés
 - etc.
 
-# Analyse concurentielle, état de l'art
-
-# Analyse de faisabilité
-
 # Illustrations et images
 (à faire)
 
@@ -34,4 +30,44 @@ Lorsqu'un message avec une priorité maximale est envoyé, une notification est 
 # License
 (à définir plus tard)
 
-////
+# Descriptif du projet
+
+# Liste des collaborateurs du projet
+    > A définir ?
+
+# Analyse concurentielle, état de l'art
+    > Pas d'applications similaires en terme de messagerie utilisant un système quick-messaging.
+    Mais beaucoup des apps de messagerie en général. 
+    
+# Analyse de faisabilité
+    > Très bonne question - devrait être faisable 
+    
+# Analyse fonctionelle
+
+# Technologies utilisées
+
+# Fonctionnalités planifiées/implémentées
+- phase création de compte
+- phase log in
+- phase de création de groupe
+- phase de choix de messages instantanés au moment de la création du groupe
+- possibilité de changer et personaliser la liste de quick-messages.
+- choix de priorité des messages au moment de conception
+- possibilité de change la priorité si nécessaire au moment d'envoi
+- phase de messagerie instantanée 
+- naviguer entre les groupes
+- notification des messages
+
+- base de donnée (compte, liste de quick-messages, groupes)
+
+- Une logique intuitive et simple à mettre en main
+
+# Meta : Commencer à penser à la gestion du projet et à la répartition des tâches (tâches par composants et non par domaines)
+
+- Concept UI/UX, wireframes
+![nameofimage](URL)
+
+- Un système intuitif et familier
+
+# Description du MVP
+Tous sauf le système des priorités. 
