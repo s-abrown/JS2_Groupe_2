@@ -29,18 +29,18 @@ Lorsqu'un message avec une priorité maximale est envoyé, une notification est 
 - etc.
 
 # Fonctionnalités planifiées/implémentées (plus dans le détail)
-- phase création de compte
-- phase log in
-- phase de création de groupe
-- phase de choix de messages instantanés au moment de la création du groupe
-- possibilité de changer et personaliser la liste de quick-messages.
-- choix de priorité des messages au moment de conception
-- possibilité de change la priorité si nécessaire au moment d'envoi
-- phase de messagerie instantanée 
-- naviguer entre les groupes
-- notification des messages
-- base de donnée (compte, liste de quick-messages, groupes)
-- Une logique intuitive et simple à mettre en main
+- Phase création de compte
+- Phase log in
+- Phase de création de groupes
+- Phase de choix de messages instantanés au moment de la création d'un groupe
+- Possibilité de changer et personaliser la liste de quick-messages
+- Choix de la priorité des messages au moment de conception
+- Possibilité de changer la priorité au moment de l'envoi, si nécessaire
+- Phase de messagerie instantanée 
+- Naviguation entre les groupes
+- Notification des messages
+- Base de données (compte, liste de quick-messages, groupes)
+- Logique intuitive et simple à mettre en main
 
 # Illustrations et images
 ## Concept UI/UX, wireframe
@@ -48,11 +48,12 @@ Lorsqu'un message avec une priorité maximale est envoyé, une notification est 
 - Un système intuitif et familier
 
 # Analyse concurentielle, état de l'art
-Il existe de nombreuses applications de messagerie avec des fonctionnalités beaucoup plus avancées que celle que nous proposons. Whatsapp, Telegram, WeChat, Signal, etc. permettent de partager avec des groupes prédéfinis non seulement des messages, mais aussi des images, des vidéos, des audio, ... Certaines applications sont également étroitement liées à des plateformes de email, comme Hangouts ou Teams. En général, il ne semble pas y avoir d'applications de messagerie qui reposent sur des messages préenregistrés, qui est l’intéresse principal de notre app puisque permette une communication rapide en un nombre limité des clicks. 
+Il existe de nombreuses applications de messagerie avec des fonctionnalités beaucoup plus avancées que celle que nous proposons. Whatsapp, Telegram, WeChat, Signal, etc. permettent de partager avec des groupes prédéfinis non seulement des messages, mais aussi des images, des vidéos ou des audios. Certaines applications sont également étroitement liées à des plateformes d'emails, comme Hangouts ou Teams. En général, il ne semble pas y avoir d'applications de messagerie qui reposent sur des messages préenregistrés. L’intérêt principal de notre app est de permette une communication rapide en un nombre limité des clicks. 
+
 En ce qui concerne la hiérarchisation des messages, de nombreuses applications offrent la possibilité d'organiser les éléments selon un schéma de couleurs, il s’agit surtout des applications de listes de tâches qui offrent souvent la possibilité de partager les listes avec des groupes ou des individus.
 
 Fonctionnalités déjà utilisées par d'autres apps : création d'un compte, création de groupes avec un administrateur, priorité des messages par couleur. 
-Innovations : système de messages préenregistrés.
+Innovations/Différences : système de messages préenregistrés.
 
 # Installation
 (à faire)
@@ -70,4 +71,4 @@ Innovations : système de messages préenregistrés.
 # Meta : Commencer à penser à la gestion du projet et à la répartition des tâches (tâches par composants et non par domaines)
 
 # Description du MVP
-Tous sauf le système des priorités. 
+Tous sauf le système des priorités/notifications. 
