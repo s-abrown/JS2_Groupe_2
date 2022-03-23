@@ -65,7 +65,7 @@ Lorsqu'un message avec une priorité maximale est envoyé, une notification est 
 # Meta : Commencer à penser à la gestion du projet et à la répartition des tâches (tâches par composants et non par domaines)
 
 - Concept UI/UX, wireframes
-![nameofimage](URL)
+![wireframe](wireFrame.jpeg)
 
 - Un système intuitif et familier
 
