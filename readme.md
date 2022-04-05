@@ -8,7 +8,7 @@ Ce projet est développé dans le cadre du cours "Programmation pour Internet II
 - Vache
 - Antonin
 - Tessa Cattaneo
-- ?
+- Norrick Malandain
 
 # Description et principe
 Ce projet consiste en une messagerie qui a pour but principaux d'être facile à utiliser, rapide, jolie et polyvalente.
