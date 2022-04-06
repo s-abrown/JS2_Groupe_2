@@ -1,4 +1,10 @@
 <template name="home">
-    <h1>Home (log in)</h1>
+<div id="mainBox">
+    <!-- does not work, cannot import logo image in the html home page-->
+    <img src="../../../images/logo.png" alt="Logo">
+    <input id="userID" ype="text" placeholder="User ID">
+    <input id="password" type="password" placeholder="Password">
+    <input id="button" type="button" value="Login">
     <a href="{{urlFor 'signUp'}}">Sign Up page</a>
+</div>
 </template>
