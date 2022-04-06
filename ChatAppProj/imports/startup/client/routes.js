@@ -6,6 +6,8 @@ import '../../ui/pages/menu/menu';
 import '../../ui/pages/group/group';
 import '../../ui/pages/manageGroup/manageGroup';
 import '../../ui/pages/createGroup/createGroup';
+import '../../ui/pages/notFound/notFound';
+
 
 
 FlowRouter.route('/', {
@@ -50,11 +52,8 @@ FlowRouter.route('/create-group', {
     },
 });
 
-// Does not workk --> ask profs
-/*
 FlowRouter.route('*', {
     action(){
-        this.render('404');
+        this.render('notFound');
     },
 })
-*/
