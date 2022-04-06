@@ -4,11 +4,11 @@
 Ce projet est développé dans le cadre du cours "Programmation pour Internet II" (printemps 2022) dispensé par Loïc Cattani (Université de Lausanne).
 
 # Liste des collaborateurs du projet
-- Sophie Brown
+- Sophie 
 - Vache
-- Antonin
-- Tessa Cattaneo
-- Norrick Malandain
+- Antonin 
+- Tessa
+- Norrick
 
 # Description et principe
 Ce projet consiste en une messagerie qui a pour but principaux d'être facile à utiliser, rapide, jolie et polyvalente.
