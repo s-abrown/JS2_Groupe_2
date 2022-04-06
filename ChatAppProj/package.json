@@ -1,5 +1,5 @@
 {
-  "name": "Projet_GP02",
+  "name": "ChatAppProj",
   "private": true,
   "scripts": {
     "start": "meteor run",
