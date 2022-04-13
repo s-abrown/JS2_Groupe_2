@@ -1,16 +1,17 @@
 <template name="manageGroup">
-    <!-- Page Title-->
-    <div id="title">Settings</div>
+     <!-- Page Title-->
+     <div id="title">Settings</div>
 
-    <!-- Group Name Section -->
-    <div class="block_container">
+
+     <!-- Group Name Section -->
+     <div class="block_container">
         <!-- Group name selection -->
         <div id="group_title">
 
-            <label class="label">Group name:</label> 
+            <div class="label">Group name</div> 
 
             <div id="group_name_editing_container">
-                <input id="group_name" type="text" value="group name"> </input>
+                <input id="group_name" type="text" value="" placeholder="Group name">
                 <div id="edit_name">Edit</div>
             </div>
        
@@ -30,48 +31,44 @@
     <div class="block_container">
         <!-- Member Editing Field -->
         <div id="add_member">
-            <label class="label">Add member:</label>
+            <div class="label">Members</div>
             <div id="member_edit_container">
-                <input class="pull-right" id="add_member" type="text" value="Enter email"> </input>
+                <input id="add_member" type="text" placeholder="Add member (email)">
                 <div class="add" id="add_member">Add</div>
             </div>
         </div>
         <!-- Member List -->
         <div id="member_list">
-
-            <label class="label">Members:</label>
-
+ 
             <div class="memberContainer">
                 <div class="member_list">Member 1</div> 
                 <div class="x_button" >x</div>
             </div> 
-
+ 
             <div class="memberContainer">
                 <div class="member_list">Member 2</div> 
                 <div class="x_button" >x</div>
             </div> 
-
+ 
             <div class="memberContainer">
                 <div class="member_list">Member 3</div> 
                 <div class="x_button" >x</div>
             </div> 
-
+ 
         </div>
     </div>
     
-
+ 
     <!-- Message selection section -->
     <div class="block_container">
         <!-- Message Editing Field -->
         <div id="message_selection">
-
-            <label class="label">Messages:</label>
-
+            <div class="label">Messages</div> 
             <div id="message_edit_container">
-                <input id="add_message" type="text" value="Enter message"> </input>
+                <input id="add_message" type="text" placeholder="Enter message">
                 <div class= "add" id="add_message">Add</div> 
             </div>
-
+ 
             <div class="message_list_container">
                 <div class="message_list">Message 1</div> 
                 <div class="x_button" >x</div>

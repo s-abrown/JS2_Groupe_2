@@ -8,11 +8,18 @@ body,html {
   height: 100%;
 }
 
+*{
+    color: #fff;
+}
+
 a, a:active, a:hover {
   color: #fff;
   text-decoration : none;
 }
 
+::placeholder{
+    color: #fff;
+}
 
 /* Login page CSS */
 #mainBox {
@@ -235,59 +242,58 @@ a, a:active, a:hover {
 }
 
 /* Manage Group Settings */
-
 #title {
-    font-style:normal;
+    padding: 1em;
     text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 900;
-    font-size:xx-large
+    background-color: #99bbff;
+    color: #fff;
+    font-weight: bold;
 }
-
-label {
-    font-size: 1.1em;
-    font-style: bold;
-    text-align: right;
-    display: inline-block;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 700;
-    font-size:large;
-
-}
-
-hr {
-    border: 0.01em solid #99bbff;
-    border-radius: 6px;   
-}
-
-
 
 /* Group Name Editing Field */
-
-#group_name_editing_container {
-    margin: 0;
+#group_name_editing_container,
+#member_edit_container,
+#message_edit_container {
     width: 100%;
     display: flex;
     flex-direction: row;
-    box-sizing: border-box;
-}
-
-#group_name_editing_container div:nth-child(1) {
-    width: 90%;
-}
-
-#group_name_editing_container div:nth-child(2),
-#member_edit_container div:nth-child(2),
-#message_edit_container div:nth-child(2) {
-    width: 15%;
     background-color: #99bbff;
-    font-weight: 600;
-    color: white;
+    font-weight: bold;
+    color: #fff;
     text-align: center;
     border-radius: 0.5em;
     padding: 0.5em;
-    margin-left: 5%;
+    box-sizing: border-box
+}
 
+#group_name_editing_container input,
+#member_edit_container input,
+#message_edit_container input {
+    width: 85%;
+}
+
+#group_name_editing_container *,
+#member_edit_container *,
+#message_edit_container * {
+    background-color: rgba(0,0,0,0);
+    padding: 0.5em;
+    border: none;
+    outline: none;
+}
+
+#group_name_editing_container div,
+#member_edit_container div,
+#message_edit_container div {
+    border-radius: 0.2em;
+    width: 15%;
+    border: 2px solid #fff
+}
+
+#group_name_editing_container div:hover,
+#member_edit_container div:hover,
+#message_edit_container div:hover {
+    background-color: #66aaff;
+    cursor: pointer;
 }
 
 /* Group Type Selection */
@@ -297,7 +303,6 @@ hr {
     display: flex;
     flex-direction: row;
     box-sizing: border-box;
-
 }
 
 #group_type_container div {
@@ -311,6 +316,9 @@ hr {
     margin: 0 2.5%;
 }
 
+.group_type div:hover{
+    background-color: #66aaff;
+}
 
 /* Member Editing Field */
 
@@ -336,7 +344,7 @@ hr {
     display: flex;
     flex-direction: row;
     box-sizing: border-box;
-    color: white;
+    color: #fff;
 }
 
 .memberContainer div:nth-child(1),
@@ -373,7 +381,7 @@ hr {
     display: flex;
     flex-direction: row;
     box-sizing: border-box;
-    color: white;
+    color: #fff;
 }
 
 #message_edit_container input:nth-child(1) {
@@ -386,5 +394,6 @@ hr {
 }
 
 .label {
-    margin: 2%;
+    font-weight: bold;
+    margin: 1em 0;
 }
