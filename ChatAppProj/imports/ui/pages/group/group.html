@@ -3,13 +3,9 @@
     <div id="groupBox">
         <!-- Top banner with infos and settings -->
         <div id="groupInfo">
-            <div id="goBack">
-                <a href="menu">Back</a>
-            </div>
+            <div id="goBack">Back</div>
             <input type="text" id="groupTitle" placeholder="Title of the group" value="Title of the group">
-            <div id="groupSettings">
-                <a href="manage-group">Settings</a>
-            </div>
+            <div id="groupSettings">Settings</div>
         </div>
         <!-- All messages displayed here -->
         <div id="messages">
@@ -54,6 +50,10 @@
         let pm = document.getElementsByClassName("predefinedMessage");
         let mouse = [];
 
+        // Making buttons clickable
+        document.getElementById("groupSettings").addEventListener("click", function(){window.location.href = "manage-group"});
+        document.getElementById("goBack").addEventListener("click", function(){window.location.href = "menu"});
+        
         // Tracking mouse position (used later in code)
         document.addEventListener("mousemove", e => {
             mouse = [e.x, e.y];
