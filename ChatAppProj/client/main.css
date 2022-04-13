@@ -1,7 +1,9 @@
 /* General CSS */
-body {
+body,html {
   font-family: Arial, Helvetica, sans-serif;
   background-color: #e7e7e7;
+  margin: 0;
+  padding: 0;
 }
 
 a, a:active, a:hover {
@@ -171,7 +173,7 @@ a, a:active, a:hover {
         to right, 
         rgba( 255, 0, 0, 0.75 ) 0%, rgba( 255, 0, 0, 0.75 ) 33.332%,
         rgba( 255, 128, 0, 0.75 ) 33.333%, rgba( 255, 128, 0, 0.75 ) 66.665%,
-        rgba( 0, 255, 0, 0.75 ) 66.666%,rgba( 0, 255, 0, 0.75 ) 100%);
+        rgba( 0, 255, 0, 0.75 ) 66.666%,rgba( 0, 255, 0, 0.75 ) 100%
     )
 }
 
@@ -190,4 +192,42 @@ a, a:active, a:hover {
 
 .blurred {
     filter : blur( 3px ) brightness( 50% );
+}
+
+/* CSS for menu page*/
+#menuBar {
+    width: 100%;
+    background-color: #99bbff;
+    display: flex;
+    justify-content: flex-end;
+    box-sizing : border-box;
+    padding: 1em;
+}
+
+#newGroup{
+    border-radius: 0.2em;
+    background-color: #99bbff;
+    color: #fff;
+    font-size: 2em;
+    border: none;
+    outline: none;
+}
+
+#newGroup:hover{
+    background-color: #66aaff;
+    cursor: pointer;   
+}
+
+#groupsLayout{
+    padding: 5% 10%;
+    background-color: #999;
+}
+
+.groups{
+    
+    border-radius: 1em;
+    color: #fff;    ;
+    background-color: #99bbff;
+    margin: 0.5em 0;
+    padding: 0.5em 1em;
 }
