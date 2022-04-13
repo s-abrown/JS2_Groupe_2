@@ -1,3 +1,44 @@
 <template name="group">
-    <h1>Group (inside)</h1>
+    <!-- Main box for the page -->
+    <div id="groupBox">
+        <!-- Top banner with infos and settings -->
+        <div id="groupInfo">
+            <div id="goBack">Back</div>
+            <input type="text" id="groupTitle" placeholder="Title of the group" value="Title of the group">
+            <div id="groupSettings">
+                <a href="settings">Settings</a>
+            </div>
+        </div>
+        <!-- All messages displayed here -->
+        <div id="messages">
+            <!-- Temporary. Will be deleted in production -->
+            <div class="message self priority_low">
+                <div class="author">John Doe</div>
+                <div class="body">Hi, Jane!</div>
+            </div>
+            <div class="message priority_low">
+                <div class="author">Jane Doe</div>
+                <div class="body">Hi!</div>
+            </div>
+            <div class="message priority_medium">
+                <div class="author">Jane Doe</div>
+                <div class="body">Medium priority message</div>
+            </div>
+            <div class="message priority_high">
+                <div class="author">Jane Doe</div>
+                <div class="body">High priority message in red!</div>
+            </div>
+        </div>
+        <!-- Button to send a new message -->
+        <div id="typeMessage">
+            Send message
+        </div>
+    </div>
+
+    <!-- Pop-up window to display messages -->
+    <div id="messageBox">
+        <div class="predefinedMessage" id="message_a">Message A</div>
+        <div class="predefinedMessage" id="message_b">Message B</div>
+        <div class="predefinedMessage" id="message_c">Message C</div>
+    </div>
 </template>
