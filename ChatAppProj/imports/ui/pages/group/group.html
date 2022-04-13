@@ -41,4 +41,63 @@
         <div class="predefinedMessage" id="message_b">Message B</div>
         <div class="predefinedMessage" id="message_c">Message C</div>
     </div>
+    
+    <script>
+        let w = window.innerWidth;
+        let h = window.innerHeight;
+
+        let typeMessage = document.getElementById("typeMessage");
+        let messageBox = document.getElementById("messageBox");
+        let messages = document.getElementById("messages");
+        let pm = document.getElementsByClassName("predefinedMessage");
+        let mouse = [];
+
+        // Tracking mouse position (used later in code)
+        document.addEventListener("mousemove", e => {
+            mouse = [e.x, e.y];
+        });
+
+        // Displaying the message box
+        typeMessage.addEventListener("click", function(e){
+            messageBox.style.display = "flex";
+            messages.setAttribute("class", "blurred");
+
+            // Updating predifined messages
+            pm = document.getElementsByClassName("predefinedMessage");
+
+            for(m of pm){
+                m.addEventListener("click", function(){
+                    let id = this.getAttribute("id");
+
+                    // Getting message's x1 and x2 position on screen
+                    let c = m.getBoundingClientRect();
+                    let x1 = +c.left.toFixed();
+                    let x2 = Number(x1 + c.width);
+                    let inc = (x2-x1)/3;
+
+                    // Defining intervals and checking mouse position
+                    let pos_x = mouse[0];
+                    
+                    if( (pos_x >= x1) && (pos_x < x1+inc) ){
+                        alert(id + " will be sent with LOW priority!")
+                    }
+                    else if( (pos_x >= x1+inc) && (pos_x < x1+inc*2) ){
+                        alert(id + " will be sent with MEDIUM priority!")
+                    }
+                    else if( (pos_x >= x1+inc*2) && (pos_x <= x1+inc*3) ){
+                        alert(id + " will be sent with HIGH priority!")
+                    }
+                    else{
+                        alert("Error!")
+                    }
+                });
+            }
+        });
+
+        // Hiding the message box when clicking on the main box
+        messages.addEventListener("click", function(){
+            messageBox.style.display = "none";
+            messages.removeAttribute("class", "blurred");
+        });
+    </script>
 </template>
