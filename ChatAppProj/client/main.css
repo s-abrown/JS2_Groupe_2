@@ -233,7 +233,6 @@ a, a:active, a:hover {
 }
 
 .groups{
-    
     border-radius: 1em;
     color: #fff;    ;
     background-color: #99bbff;
@@ -321,7 +320,6 @@ a, a:active, a:hover {
 }
 
 /* Member Editing Field */
-
 #member_edit_container {
     margin: 0;
     width: 100%;
@@ -336,7 +334,6 @@ a, a:active, a:hover {
 }
 
 /* Member List */
-
 .memberContainer,
 .message_list_container {
     margin:0;
@@ -359,8 +356,6 @@ a, a:active, a:hover {
     margin: 0.3em;
 }
 
-
-
 .memberContainer div:nth-child(2),
 .message_list_container div:nth-child(2) {
     width: 10%;
@@ -372,9 +367,7 @@ a, a:active, a:hover {
     margin: 0.3em;
 }
 
-
 /* Message Editing Field */
-
 #message_edit_container {
     margin: 0;
     width: 100%;
