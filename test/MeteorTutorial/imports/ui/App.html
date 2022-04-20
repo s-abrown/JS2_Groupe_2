@@ -1,0 +1,57 @@
+<body>
+    {{> mainContainer }}
+</body>
+
+<!-- Template one: for the header and ul-->
+<!-- For us: "message body"-->
+<template name="mainContainer">
+    <div class="app">
+        <header>
+            <div class="app-bar">
+                <div class="app-header">
+                    <h1>📝️ To Do List</h1>
+                </div>
+            </div>
+        </header>
+
+        <div class="main">
+            {{#if isUserLogged}}
+                <div class="user">
+                    {{getUser.username}} 🚪
+                </div>
+
+
+            {{> form }}
+
+            <ul class="tasks">
+                {{#each tasks}}
+                    {{> task}}
+                {{/each}}
+            </ul>
+
+            {{else}}
+                {{> login }}
+            {{/if}}
+
+
+            {{#if isLoading}}
+                    <div class="loading">loading...</div>
+            {{/if}}
+        </div>
+    </div>
+</template>
+
+<!-- Template two: for the list of tasks-->
+<!-- For us: replace tasks with message-->
+<!-- <template name="task"> -->
+    <!-- theoretically: we'd use divs & classes -->
+    <!-- <li>{{text}}</li>
+</template> -->
+
+<!-- Another template for the 'form' which will be used to register client inputs-->
+<template name="form">
+    <form class="task-form">
+        <input type="text" name="text" placeholder="Type to add new tasks" />
+        <button type="submit">Add Task</button>
+    </form>
+</template>

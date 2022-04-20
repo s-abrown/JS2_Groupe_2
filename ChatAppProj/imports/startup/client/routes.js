@@ -6,7 +6,6 @@ import '../../ui/pages/menu/menu';
 import '../../ui/pages/group/group';
 import '../../ui/pages/manageGroup/manageGroup';
 import '../../ui/pages/notFound/notFound';
-import '../../ui/pages/test/test';
 
 
 
@@ -44,12 +43,6 @@ FlowRouter.route('/manage-group', {
         this.render('manageGroup');
     },
 });
-
-FlowRouter.route('/test', {
-    action(){
-        this.render('test');
-    },
-})
 
 FlowRouter.route('*', {
     action(){
