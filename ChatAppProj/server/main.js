@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { predefinedMessagesCollection } from '../imports/db/collections';
+import '/imports/api/methods';
 
 const addPredefinedMessages = message => predefinedMessagesCollection.insert(message)
 

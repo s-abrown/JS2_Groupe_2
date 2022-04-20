@@ -1,7 +1,9 @@
 import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor'
+
 import { predefinedMessagesCollection } from '/imports/db/collections';
 import { sentMessagesCollection } from '/imports/db/collections';
+
 import './group.html';
 
 // Subscribe the client to the collection for predefined messages
@@ -20,17 +22,10 @@ Template.messageBox.helpers({
     },
 });
 
-// Method for the event below:
-Meteor.methods({
-    'click' (message){
-        return
-    }
-})
-
 // Listener/ event: upon clicking on a message it gets sent and is displayed onscreen. 
-/* Template.messageBox.event({
-    'click .predefinedMessage' : function (){
-        
-        },
-})
- */
+Template.messageBox.events({
+    'click .predefinedMessage' : function (e){
+        Meteor.call("sentMessages.insert", e.target.innerText);
+    },
+});
+ 
