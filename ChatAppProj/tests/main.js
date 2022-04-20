@@ -1,4 +1,5 @@
 import assert from "assert";
+import '/import/api/publications'
 
 describe("ChatAppProj", function () {
   it("package.json has correct name", async function () {

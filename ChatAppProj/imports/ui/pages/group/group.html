@@ -1,13 +1,103 @@
 <body>
-    {{>group}}
+    <div id="groupBox">
+        <!-- Top banner with infos and settings -->
+        <div id="groupInfo">
+            <div id="goBack">Back</div>
+            <input type="text" id="groupTitle" placeholder="Group name" value="Group name">
+            <div id="groupSettings">Settings</div>
+        </div>
+        <!-- All messages of the group displayed here -->
+        <div id="messages">
+            <!-- Temporary. Will be deleted in production -->
+            <!-- <div class="message self priority_low">
+                <div class="author">John Doe</div>
+                <div class="body">Hi, Jane!</div>
+            </div> -->
+        </div>
+        <!-- Button to send a new message -->
+        <div id="typeMessage">
+            Send message
+        </div>
+
+        <!-- Pop-up window to display predefined messages -->
+        <div id="messageBox">
+            {{> messageBox}}
+        </div>
+    </div>
+
+    <script>
+        let w = window.innerWidth;
+        let h = window.innerHeight;
+
+        let typeMessage = document.getElementById("typeMessage");
+        let messageBox = document.getElementById("messageBox");
+        let messages = document.getElementById("messages");
+        let pm = document.getElementsByClassName("predefinedMessage");
+        let mouse = [];
+
+        // Making buttons clickable
+        document.getElementById("groupSettings").addEventListener("click", function(){window.location.href = "manage-group"});
+        document.getElementById("goBack").addEventListener("click", function(){window.location.href = "menu"});
+        
+        // Tracking mouse position (used later in code)
+        document.addEventListener("mousemove", e => {
+            mouse = [e.x, e.y];
+        });
+
+        // Displaying the message box
+        typeMessage.addEventListener("click", function(e){
+            messageBox.style.display = "flex";
+            messages.setAttribute("class", "blurred");
+
+            // Updating predifined messages
+            pm = document.getElementsByClassName("predefinedMessage");
+
+            for(m of pm){
+                m.addEventListener("click", function(){
+                    let id = this.getAttribute("id");
+
+                    // Getting message's x1 and x2 position on screen
+                    let c = m.getBoundingClientRect();
+                    let x1 = +c.left.toFixed();
+                    let x2 = Number(x1 + c.width);
+                    let inc = (x2-x1)/3;
+
+                    // Defining intervals and checking mouse position
+                    let pos_x = mouse[0];
+                    
+                    if( (pos_x >= x1) && (pos_x < x1+inc) ){
+                        alert(id + " will be sent with LOW priority!")
+                    }
+                    else if( (pos_x >= x1+inc) && (pos_x < x1+inc*2) ){
+                        alert(id + " will be sent with MEDIUM priority!")
+                    }
+                    else if( (pos_x >= x1+inc*2) && (pos_x <= x1+inc*3) ){
+                        alert(id + " will be sent with HIGH priority!")
+                    }
+                    else{
+                        alert("Error!")
+                    }
+                });
+            }
+        });
+
+        // Hiding the message box when clicking on the main box
+        messages.addEventListener("click", function(){
+            messageBox.style.display = "none";
+            messages.removeAttribute("class", "blurred");
+        });
+    </script>
 </body>
 
-<template name="group">
-            {{#each predefinedMessages}}
-                {{> message}}
-            {{/each}}
+<!-- Template for predefined messages -->
+<template name="messageBox">
+    {{#each predefinedMessages}}
+        {{> message}}
+    {{/each}}
 </template>
 
+<!-- Template for formatting each predefined message -->
 <template name="message">
-    {{message}}
+    <div class="predefinedMessage" id="{{_id}}">{{message}}</div>
 </template>
+

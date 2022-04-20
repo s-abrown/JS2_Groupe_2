@@ -18,6 +18,16 @@ const messages = [
     }
 ]
 
+// Publish collection from server to client
+Meteor.publish('predefinedMessages', function publishPredefinedMessages(){
+    return predefinedMessagesCollection.find({category: 1});
+});
+
+// Publish collection from server to client of sent messages --> temporary, we will need to add the id_group
+Meteor.publish('sentMessages', function publishSentMessages(){
+    return sentMessagesCollection.find({});
+});
+
 Meteor.startup(() => {
     // Dropping (deleting stuff that is already in there) of the collection 
     predefinedMessagesCollection.rawCollection().drop();

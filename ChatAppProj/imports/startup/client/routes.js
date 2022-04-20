@@ -7,8 +7,6 @@ import '../../ui/pages/group/group';
 import '../../ui/pages/manageGroup/manageGroup';
 import '../../ui/pages/notFound/notFound';
 
-
-
 FlowRouter.route('/', {
     name: 'home',
     action() {

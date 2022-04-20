@@ -1,15 +1,36 @@
 import { Template } from 'meteor/templating';
+import { Meteor } from 'meteor/meteor'
 import { predefinedMessagesCollection } from '/imports/db/collections';
+import { sentMessagesCollection } from '/imports/db/collections';
 import './group.html';
 
-Template.group.helpers({
-    // predefinedMessages: [
-    //     { "_id" : "ff83m7apthjJovN8L", "message" : "Hello", "category" : 0 },
-    //     { "_id" : "bZTFnG8QSjvnHkPwu", "message" : "Bye", "category" : 1 },
-    //     { "_id" : "vZoE63H43KRQkLitG", "message" : "Call me", "category" : 1 },
-    // ]
+// Subscribe the client to the collection for predefined messages
+if (Meteor.isClient){
+    Meteor.subscribe('predefinedMessages');
+}
+// For sent messages (in the group)
+if (Meteor.isClient){
+    Meteor.subscribe('sentMessages');
+}
 
+// Creating the helper to feed data to the group template
+Template.messageBox.helpers({
     predefinedMessages(){
-        return predefinedMessagesCollection.find({});
+        return predefinedMessagesCollection.find({}).fetch({});
     },
+});
+
+// Method for the event below:
+Meteor.methods({
+    'click' (message){
+        return
+    }
 })
+
+// Listener/ event: upon clicking on a message it gets sent and is displayed onscreen. 
+/* Template.messageBox.event({
+    'click .predefinedMessage' : function (){
+        
+        },
+})
+ */
