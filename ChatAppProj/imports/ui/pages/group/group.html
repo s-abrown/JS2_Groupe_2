@@ -8,11 +8,7 @@
         </div>
         <!-- All messages of the group displayed here -->
         <div id="messages">
-            <!-- Temporary. Will be deleted in production -->
-            <!-- <div class="message self priority_low">
-                <div class="author">John Doe</div>
-                <div class="body">Hi, Jane!</div>
-            </div> -->
+            {{> groupMessages}}
         </div>
         <!-- Button to send a new message -->
         <div id="typeMessage">
@@ -89,6 +85,7 @@
     </script>
 </body>
 
+<!--FOR MESSAGE POP UP-->
 <!-- Template for predefined messages -->
 <template name="messageBox">
     {{#each predefinedMessages}}
@@ -101,3 +98,17 @@
     <div class="predefinedMessage" id="{{_id}}">{{message}}</div>
 </template>
 
+<!-- FOR SENT MESSAGES-->
+<!-- Messages to be displayed-->
+<template name="groupMessages">
+    {{#each sentMessages}}
+        {{> displayMessage}}
+    {{/each}}
+</template>
+
+<template name="displayMessage">
+    <div class="message {{priority}}">
+        <div class="author">{{author}} ({{date}})</div>
+        <div class="body">{{message}}</div>
+    </div>
+</template>

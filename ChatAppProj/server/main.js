@@ -1,5 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { predefinedMessagesCollection } from '../imports/db/collections';
+import { sentMessagesCollection } from '../imports/db/collections';
+
 import '/imports/api/methods';
 
 const addPredefinedMessages = message => predefinedMessagesCollection.insert(message)
@@ -28,6 +30,7 @@ Meteor.publish('predefinedMessages', function publishPredefinedMessages(){
 Meteor.publish('sentMessages', function publishSentMessages(){
     return sentMessagesCollection.find({});
 });
+
 
 Meteor.startup(() => {
     // Dropping (deleting stuff that is already in there) of the collection 

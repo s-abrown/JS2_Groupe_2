@@ -22,6 +22,13 @@ Template.messageBox.helpers({
     },
 });
 
+// Creating the helper to feed data to the group template
+Template.groupMessages.helpers({
+    sentMessages(){
+        return sentMessagesCollection.find({}).fetch({});
+    },
+});
+
 // Listener/ event: upon clicking on a message it gets sent and is displayed onscreen. 
 Template.messageBox.events({
     'click .predefinedMessage' : function (e){

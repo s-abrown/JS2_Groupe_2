@@ -11,6 +11,7 @@ Meteor.methods({
             author: 'default',  // needs modification
             date: new Date(),
             message : m, // needs security improvements (later)
+            priority: 'priority_low' // needs to be dynamic
         })
     },
 });
