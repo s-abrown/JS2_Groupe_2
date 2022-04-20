@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
-import { predefinedMessages } from '../imports/db/collections';
+import { predefinedMessagesCollection } from '../imports/db/collections';
 
-const addPredefinedMessages = message => predefinedMessages.insert(message)
+const addPredefinedMessages = message => predefinedMessagesCollection.insert(message)
 
 const messages = [
     {
@@ -20,7 +20,7 @@ const messages = [
 
 Meteor.startup(() => {
     // Dropping (deleting stuff that is already in there) of the collection 
-    predefinedMessages.rawCollection().drop();
+    predefinedMessagesCollection.rawCollection().drop();
     // Adding predefined messages to the collection
     messages.forEach(addPredefinedMessages);
 });
