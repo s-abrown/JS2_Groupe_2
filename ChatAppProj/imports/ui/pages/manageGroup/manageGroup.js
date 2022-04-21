@@ -22,13 +22,13 @@ Template.manageGroup.helpers({
 
         return customMessagesCollection.find({group: groupId}).fetch();
     },
-    // For the group type
-    groupType(){
-        return groupTypeCollection.find({}).fetch({});
-    },
     // For the member list??
     users(){
         return users.find({}).fetch({});
+    },
+    // For the group type
+    groupType(){
+        return groupTypeCollection.find({}).fetch({});
     },
 });
 
@@ -50,19 +50,20 @@ Template.manageGroup.events({
         Meteor.call('customMessages.delete', id);
     },
     // Upon adding a new member to a group, the member is displayed in the member list
-    /* 'click #member_list' : function (e) {
+    'click #member_list' : function (e) {
         let memberList = document.getElementById("input_add_member").value;
         // let memberId = localStorage.getItem("memberId");
         document.getElementById("input_add_member").value = '';
 
         Meteor.call('users.insert', memberList, memberId);
-    }, */
+    },
     // Deletes a member from the member list
-    //'click .member_x_button' : function (e) {
-    //    let id = e.target.parentNode.getAttribute("id");
+    'click .member_x_button' : function (e) {
+        let id = e.target.parentNode.getAttribute("id");
 
-    //    Meteor.call('user.delete', id);
-    //},
+        Meteor.call('user.delete', id);
+    },
     // Select a group type which will affect the predefined message list?
+    
 });
 

@@ -20,7 +20,7 @@ Meteor.methods({
     },
     'group.createGroup'(){
         groupCollection.insert({
-            name : 'New group',
+            name : 'Group name',
             admin : 'user', 
             users: ['user'],
         })
@@ -36,6 +36,12 @@ Meteor.methods({
         // Add user
         customMessagesCollection.remove({_id:id})
 
+    },
+    'group.update'(newName, groupId){
+        // Update name of group
+        groupCollection.update({_id: groupId}, {
+            $set:{name: newName}
+        })
     }
 });
 

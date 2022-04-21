@@ -47,8 +47,8 @@ Template.groupMessages.helpers({
     },
 });
 
-// Listener/ event: upon clicking on a message it gets sent and is displayed onscreen. 
 Template.messageBox.events({
+    // Listener/ event: upon clicking on a message it gets sent and is displayed onscreen. 
     'click .predefinedMessage' : function (e){
         let groupId = localStorage.getItem("groupId");
 
@@ -58,3 +58,14 @@ Template.messageBox.events({
     },
 });
  
+
+Template.groupPage.events({
+    'change #groupTitle' : function (e){
+        let newName = e.target.value;
+        let groupId = localStorage.getItem("groupId");
+
+        // needs security fixes
+
+        Meteor.call("group.update", newName, groupId);
+    }
+});
