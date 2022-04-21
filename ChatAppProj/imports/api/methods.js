@@ -28,3 +28,5 @@ Meteor.methods({
         })
     },
 });
+
+// Test to try and push smth to the github ignore pls
