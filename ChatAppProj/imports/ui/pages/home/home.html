@@ -1,9 +1,21 @@
+<body>
+    {{> home}}
+    {{> dashboard }}
+</body>
+
 <template name="home">
-<div id="mainBox">
-    <img src="images/logo.png" alt="Logo">
-    <input id="userID" type="text" placeholder="User ID" required>
-    <input id="password" type="password" placeholder="Password" required>
-    <input id="button" type="button" value="Login">
-    <a href="{{urlFor 'signUp'}}">Sign Up page</a>
-</div>
+    <div id="mainBox">
+        <img src="images/logo.png" alt="Logo">
+        <input id="userID" type="text" placeholder="User ID" required>
+        <input id="password" type="password" placeholder="Password" required>
+        <input id="button" type="button" value="Login">
+        <a href="sign-up">Sign Up page</a>
+    </div>
 </template>
+
+<!-- testing a log out template-->
+<template name="dashboard">
+    <p>You're logged in.</p>
+    <p><a href="#" class="logout">Logout</a></p>
+</template>
+
