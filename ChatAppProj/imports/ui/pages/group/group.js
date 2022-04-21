@@ -32,7 +32,7 @@ Template.groupMessages.helpers({
 // Listener/ event: upon clicking on a message it gets sent and is displayed onscreen. 
 Template.messageBox.events({
     'click .predefinedMessage' : function (e){
-        Meteor.call("sentMessages.insert", e.target.innerText);
+        Meteor.call("sentMessages.insert", e.target.innerText, priority);
     },
 });
  

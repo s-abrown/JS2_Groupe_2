@@ -5,3 +5,5 @@ export const predefinedMessagesCollection = new Mongo.Collection('predefinedMess
 
 // This collection is for sent messages
 export const sentMessagesCollection = new Mongo.Collection('sentMessages');
+
+export const groupCollection = new Mongo.Collection('group');

@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import { predefinedMessagesCollection } from '../imports/db/collections';
+import { groupCollection, predefinedMessagesCollection } from '../imports/db/collections';
 import { sentMessagesCollection } from '../imports/db/collections';
 
 import '/imports/api/methods';
@@ -29,6 +29,11 @@ Meteor.publish('predefinedMessages', function publishPredefinedMessages(){
 // Publish collection from server to client of sent messages --> temporary, we will need to add the id_group
 Meteor.publish('sentMessages', function publishSentMessages(){
     return sentMessagesCollection.find({});
+});
+
+// Publish groups --> only the ones in which the user is
+Meteor.publish('publishGroups', function f(){
+    return groupCollection.find({});
 });
 
 

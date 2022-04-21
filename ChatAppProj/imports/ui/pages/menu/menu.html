@@ -1,18 +1,25 @@
 <body>
-    <h1>Still hating Meteor</h1>
+    {{> menu}}
 </body>
 
-<!-- {{> menu}}
 <template name="menu">
     <div id="menu">
         <div id="menuBar">
             <input id="newGroup" type="button" value="+">
         </div>
         <div id="groupsLayout">
-            <div class="groups" id="group1">Group 1</div>
-            <div class="groups" id="group2">Group 2</div>
-            <div class="groups" id="group3">Group 3</div>
-            <div class="groups" id="group4">Group 4</div>
+            {{> allGroups}}
         </div>
     </div> 
-</template>  -->
+</template> 
+
+
+<tempalte name="allGroups">
+    {{#each group}}
+        {{> oneGroup}}
+    {{/each}}
+</tempalte>
+
+<template name="oneGroup">
+    <div class="groups" id="{{_id}}">{{name}}</div>
+</template>
