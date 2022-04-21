@@ -7,9 +7,8 @@ import { predefinedMessagesCollection, sentMessagesCollection, customMessagesCol
 import './group.html';
 
 // Unusable !!
-/* const getUser = () => Meteor.user();
+const getUser = () => Meteor.user();
 const isUserLogged = () => !!getUser();
- */
 
 // Needs security fixes -> EVERYWHERE !!
 
