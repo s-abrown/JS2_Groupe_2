@@ -1,5 +1,11 @@
 <body>
-    {{> menu}}
+   {{> menu}}
+
+   <script>
+       function displayGroup(){
+            window.location.href = "group";
+       }                
+   </script>
 </body>
 
 <template name="menu">
@@ -11,15 +17,14 @@
             {{> allGroups}}
         </div>
     </div> 
-</template> 
+</template>
 
-
-<tempalte name="allGroups">
+<template name="allGroups">
     {{#each group}}
         {{> oneGroup}}
     {{/each}}
-</tempalte>
+</template>
 
 <template name="oneGroup">
-    <div class="groups" id="{{_id}}">{{name}}</div>
+    <div class="groups" id="{{_id}}" onclick="displayGroup()">{{name}}</div>
 </template>

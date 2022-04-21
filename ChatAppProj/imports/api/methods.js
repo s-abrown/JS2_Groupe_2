@@ -5,7 +5,7 @@ import { groupCollection } from '/imports/db/collections';
 
 // Method for the event below (displaying past messages from database):
 Meteor.methods({
-    'sentMessages.insert'(m, priority) {
+    'sentMessages.insert'(m, priority, groupId) {
         check(m, String);
 
         let ts = new Date().getTime();
@@ -13,10 +13,11 @@ Meteor.methods({
         date = ("00" + date.getDate()).substr(-2,2) + "." + ("00" + date.getMonth()).substr(-2,2) + "." + date.getFullYear() + " " + ("00" + date.getHours()).substr(-2,2) + ":" + ("00" + date.getMinutes()).substr(.2,2);
 
         sentMessagesCollection.insert({
-            author: 'user',  // needs modification
+            author: 'meteorite',  // needs modification
             date: date,
             message : m, // needs security improvements (later)
-            priority: priority // now it's dyinamic
+            priority: priority, // now it's dyinamic
+            group: groupId
         })
     },
     'group.createGroup'(){
@@ -25,5 +26,5 @@ Meteor.methods({
             admin : 'user', 
             users: ['user'],
         })
-    }
+    },
 });
