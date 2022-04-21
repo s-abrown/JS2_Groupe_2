@@ -1,26 +1,26 @@
-import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
+import { Template } from 'meteor/templating';
 
-import { predefinedMessagesCollection, sentMessagesCollection, customMessagesCollection } from '/imports/db/collections';
+import { predefinedMessagesCollection, sentMessagesCollection, customMessagesCollection, groupCollection } from '/imports/db/collections';
 
 import './group.html';
 
 // Unusable !!
-const getUser = () => Meteor.user();
+/* const getUser = () => Meteor.user();
 const isUserLogged = () => !!getUser();
+ */
 
+// Needs security fixes -> EVERYWHERE !!
 
-// Subscribe the client to the collection for predefined messages
+// Subscribe the client to the collections
 if (Meteor.isClient){
     Meteor.subscribe('predefinedMessages');
-}
-// For sent messages (in the group)
-if (Meteor.isClient){
     Meteor.subscribe('sentMessages');
+    Meteor.subscribe('publishGroups');
 }
 
-// Creating the helper to feed data to the group template
+// Creating the helper for the predefined messages (predefined & custom)
 Template.messageBox.helpers({
     predefinedMessages(){
         return predefinedMessagesCollection.find({}).fetch({});
@@ -28,43 +28,46 @@ Template.messageBox.helpers({
     customMessages(){
         let groupId = localStorage.getItem("groupId");
         return customMessagesCollection.find({group: groupId}).fetch();
-    }
+    },
 });
 
-// Creating the helper to feed data to the group template
+// Creating the helper to feed data to the group template 
 Template.groupMessages.helpers({
     sentMessages(){
-        // Getting stored groupId -> Needs security checks
-
-        // HAHA WTF THAT DOESNT WORK
+        // Going for the "session" way -> DOESN'T WORK !
         // let groupId = Session.get("groupId");
 
-        // Going for the "javascript way"
+        // Going for the "javascript way" -> DOESN'T WORK !
         // let groupId = Session.keys.groupId;
 
+        // Going for the desperate way -> WORKS !
         let groupId = localStorage.getItem("groupId");
         return sentMessagesCollection.find({group: groupId}).fetch();
     },
 });
 
+// Creating the helper to get the group name -> DOESN'T WORK !
+Template.groupName.helpers({
+    group(){
+        let groupId = localStorage.getItem("groupId");
+        alert();
+    }
+});
+
+// Listener/ event: upon clicking on a message it gets sent and is displayed onscreen. 
 Template.messageBox.events({
-    // Listener/ event: upon clicking on a message it gets sent and is displayed onscreen. 
     'click .predefinedMessage' : function (e){
         let groupId = localStorage.getItem("groupId");
-
-        const getUser = () => Meteor.user();
 
         Meteor.call("sentMessages.insert", e.target.innerText, priority, groupId, getUser());
     },
 });
  
-
+// Event for updating group's name
 Template.groupPage.events({
     'change #groupTitle' : function (e){
         let newName = e.target.value;
         let groupId = localStorage.getItem("groupId");
-
-        // needs security fixes
 
         Meteor.call("group.update", newName, groupId);
     }

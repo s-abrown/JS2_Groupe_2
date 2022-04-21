@@ -1,13 +1,12 @@
-import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
-// Import collections:
+import { Template } from 'meteor/templating';
+
 import { customMessagesCollection, groupTypeCollection } from '/imports/db/collections';
 
 import './manageGroup.html';
 
 // !!!!!!!! CHECKS OF STRINGS, THINGS, OR WHATEVER
-
 
 // Custom messages subscription:
 if (Meteor.isClient){
@@ -64,6 +63,10 @@ Template.manageGroup.events({
         Meteor.call('user.delete', id);
     },
     // Select a group type which will affect the predefined message list?
-    
+    'click .group_type' : function (e) {
+        let groupType = document.getElementById("group_type");
+
+        Meteor.call('groupType')
+    }
 });
 

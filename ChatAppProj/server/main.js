@@ -1,6 +1,7 @@
-import { Meteor } from 'meteor/meteor';
-import { groupCollection, predefinedMessagesCollection, customMessagesCollection, sentMessagesCollection } from '../imports/db/collections';
 import { Accounts } from 'meteor/accounts-base'
+import { Meteor } from 'meteor/meteor';
+
+import { groupCollection, predefinedMessagesCollection, customMessagesCollection, sentMessagesCollection } from '../imports/db/collections';
 
 import '/imports/api/methods';
 

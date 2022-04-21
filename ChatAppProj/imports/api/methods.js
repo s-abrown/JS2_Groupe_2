@@ -1,4 +1,5 @@
 import { check } from 'meteor/check';
+
 import { customMessagesCollection, predefinedMessagesCollection, sentMessagesCollection, groupCollection } from '../db/collections';
 
 // Method for the event below (displaying past messages from database):
