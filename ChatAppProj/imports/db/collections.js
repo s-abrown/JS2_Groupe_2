@@ -6,4 +6,11 @@ export const predefinedMessagesCollection = new Mongo.Collection('predefinedMess
 // This collection is for sent messages
 export const sentMessagesCollection = new Mongo.Collection('sentMessages');
 
+// This collection is for the groups
 export const groupCollection = new Mongo.Collection('group');
+
+// This collection is for the personalised messages:
+export const customMessagesCollection = new Mongo.Collection('customMessages');
+
+// Collection for group type????
+export const groupTypeCollection = new Mongo.Collection('groupType');

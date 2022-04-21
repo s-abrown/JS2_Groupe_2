@@ -1,3 +1,8 @@
+<body>
+    {{> manageGroup}}
+</body>
+
+
 <template name="manageGroup">
      <!-- Page Title-->
      <div id="title">Settings</div>
@@ -6,11 +11,7 @@
      <div class="block_container">
         <!-- Group name selection -->
         <div id="group_title">
-            <div class="label">Group name</div>
-            <div id="group_name_editing_container">
-                <input id="group_name" type="text" value="" placeholder="Group name">
-                <div id="edit_name">Edit</div>
-            </div>
+            <div class="label">Group type</div>
             <div id="group_type_container">
                 <div class="group_type" id="work_button">Work</div>
                 <div class="group_type" id="travel_button">Travel</div>
@@ -26,24 +27,16 @@
         <div id="add_member">
             <div class="label">Members</div>
             <div id="member_edit_container">
-                <input id="add_member" type="text" placeholder="Add member (email)">
+                <input id="input_add_member" type="text" placeholder="Add member (email)">
                 <div class="add" id="add_member">Add</div>
             </div>
         </div>
         <!-- Member List -->
         <div id="member_list">
-            <div class="memberContainer">
+            <div class="memberContainer" id="">
                 <div class="member_list">Member 1</div>
-                <div class="x_button" >x</div>
+                <div class="member_x_button" >x</div>
             </div> 
-            <div class="memberContainer">
-                <div class="member_list">Member 2</div>
-                <div class="x_button" >x</div>
-            </div> 
-            <div class="memberContainer">
-                <div class="member_list">Member 3</div>
-                <div class="x_button" >x</div>
-            </div>
         </div>
     </div>
 
@@ -53,13 +46,20 @@
         <div id="message_selection">
             <div class="label">Messages</div> 
             <div id="message_edit_container">
-                <input id="add_message" type="text" placeholder="Enter message">
-                <div class= "add" id="add_message">Add</div>
+                <input id="input_add_message" type="text" placeholder="Enter message">
+                <div class= "add" id="button_add_message">Add</div>
             </div>
-            <div class="message_list_container">
-                <div class="message_list">Message 1</div>
-                <div class="x_button" >x</div>
-            </div>
+
+            {{#each customMessages}}
+                {{> cmt}}
+            {{/each}}
         </div>
+    </div>
+</template>
+
+<template name="cmt">
+    <div class="message_list_container" id="{{_id}}">
+        <div class="message_list">{{message}}</div>
+        <div class="message_x_button" >x</div>
     </div>
 </template>

@@ -1,6 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import { groupCollection, predefinedMessagesCollection } from '../imports/db/collections';
-import { sentMessagesCollection } from '../imports/db/collections';
+import { groupCollection, predefinedMessagesCollection, customMessagesCollection, sentMessagesCollection } from '../imports/db/collections';
 import { Accounts } from 'meteor/accounts-base'
 
 import '/imports/api/methods';
@@ -42,8 +41,18 @@ Meteor.publish('publishGroups', function f(){
     return groupCollection.find({});
 });
 
+// Publish custom messages for ManageGroup page
+Meteor.publish('customMessages', function publishCustomMessages(){
+    return customMessagesCollection.find({});
+});
+
+// Publish group types for ManageGroup page
+Meteor.publish('groupType', function publishGroupType(){
+    return groupTypeCollection.find({});
+});
+
 Meteor.startup(() => {
-    // Creating a new user on server startup if won't find it in the database
+    // reating a new user on server startup if won't find it in the database
     if (!Accounts.findUserByUsername(SEED_USERNAME)) {
         Accounts.createUser({
             username: SEED_USERNAME,
@@ -55,3 +64,4 @@ Meteor.startup(() => {
     // Adding predefined messages to the collection
     messages.forEach(addPredefinedMessages);
 });
+

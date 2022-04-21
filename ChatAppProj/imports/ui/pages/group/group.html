@@ -1,4 +1,8 @@
 <body>
+    {{> groupPage}}
+</body>
+
+<template name="groupPage">
     <div id="groupBox">
         <!-- Top banner with infos and settings -->
         <div id="groupInfo">
@@ -84,18 +88,26 @@
             messages.removeAttribute("class", "blurred");
         });
     </script>
-</body>
+</template>
 
-<!--FOR MESSAGE POP UP-->
+<!--FOR MESSAGE POP UP (predefined) -->
 <!-- Template for predefined messages -->
 <template name="messageBox">
     {{#each predefinedMessages}}
-        {{> message}}
+        {{> predefinedMessage}}
+    {{/each}}
+    {{#each customMessages}}
+        {{> customMessage}}
     {{/each}}
 </template>
 
 <!-- Template for formatting each predefined message -->
-<template name="message">
+<template name="predefinedMessage">
+    <div class="predefinedMessage" id="{{_id}}">{{message}}</div>
+</template>
+
+<!-- Template for formatting each custom message -->
+<template name="customMessage">
     <div class="predefinedMessage" id="{{_id}}">{{message}}</div>
 </template>
 

@@ -2,9 +2,6 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import './home.html';
 
-const getUser = () => Meteor.user();
-const isUserLogged = () => !!getUser();
-
 // Code for logging in
 Template.home.events({
     'click #button'(e) {
