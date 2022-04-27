@@ -1,3 +1,4 @@
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
@@ -23,9 +24,6 @@ Template.menu.events({
     'click #newGroup' : function (e){
         Meteor.call("group.createGroup");
     },
-});
-
-Template.menu.events({
     'click .groups' : function (e){
         let id = e.target.getAttribute("id");
 
@@ -33,5 +31,6 @@ Template.menu.events({
         // Session.set("groupId", id); // Needs security checks
 
         localStorage.setItem("groupId", id);
+        FlowRouter.go("group")
     }
 });

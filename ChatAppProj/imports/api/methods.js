@@ -9,7 +9,7 @@ Meteor.methods({
 
         let ts = new Date().getTime();
         let date = new Date(ts);
-        date = ("00" + date.getDate()).substr(-2,2) + "." + ("00" + date.getMonth()).substr(-2,2) + "." + date.getFullYear() + " " + ("00" + date.getHours()).substr(-2,2) + ":" + ("00" + date.getMinutes()).substr(-2,2);
+        date = ("00" + date.getDate()).substr(-2,2) + "." + ("00"+(Number(date.getMonth())+1)).substr(-2,2) + "." + date.getFullYear() + " " + ("00" + date.getHours()).substr(-2,2) + ":" + ("00" + date.getMinutes()).substr(-2,2);
 
         sentMessagesCollection.insert({
             author: username,  // needs modification

@@ -31,7 +31,7 @@ FlowRouter.route('/menu', {
 FlowRouter.route('/group', {
     name: 'group',
     action() {
-        this.render('group');
+        this.render('groupPage');
     },
 });
 

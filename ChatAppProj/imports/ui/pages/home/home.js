@@ -1,6 +1,11 @@
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import './home.html';
+
+if(Meteor.userId){
+    FlowRouter.go("menu")
+}
 
 // Code for logging in
 Template.home.events({
@@ -9,6 +14,10 @@ Template.home.events({
         let password = document.getElementById("password").value;
 
         Meteor.loginWithPassword(username, password);
+
+        if(Meteor.userId){
+            FlowRouter.go("menu")
+        }
     }
 });
 

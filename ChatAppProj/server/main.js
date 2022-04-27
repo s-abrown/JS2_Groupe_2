@@ -59,6 +59,8 @@ Meteor.startup(() => {
             username: SEED_USERNAME,
             password: SEED_PASSWORD,
         })
+    } else {
+        console.log(Meteor.users.findOne())
     }
     // Dropping (deleting stuff that is already in there) of the collection 
     predefinedMessagesCollection.rawCollection().drop();

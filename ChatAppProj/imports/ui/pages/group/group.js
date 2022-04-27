@@ -1,3 +1,4 @@
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
 import { Template } from 'meteor/templating';
@@ -58,7 +59,7 @@ Template.messageBox.events({
     'click .predefinedMessage' : function (e){
         let groupId = localStorage.getItem("groupId");
 
-        Meteor.call("sentMessages.insert", e.target.innerText, priority, groupId, getUser());
+        Meteor.call("sentMessages.insert", e.target.innerText, priority, groupId, Meteor.userId);
     },
 });
  
@@ -69,5 +70,12 @@ Template.groupPage.events({
         let groupId = localStorage.getItem("groupId");
 
         Meteor.call("group.update", newName, groupId);
-    }
+    },
+    'click #goBack' : function(e){
+        FlowRouter.go('menu');
+    }, 
+    'click #groupSettings' : function(e){
+        FlowRouter.go('manageGroup');
+    }, 
 });
+

@@ -1,3 +1,4 @@
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
 import { Template } from 'meteor/templating';
@@ -67,6 +68,9 @@ Template.manageGroup.events({
         let groupType = document.getElementById("group_type");
 
         Meteor.call('groupType')
+    },
+    'click #goBack' : function (e) {
+        FlowRouter.go('group');
     }
 });
 

@@ -1,14 +1,3 @@
-<body>
-    {{> menu}}
-
-   <script>
-       function displayGroup(){
-            window.location.href = "group";
-       }                
-   </script>
-
-</body>
-
 <template name="menu">
     <div id="menu">
         <div id="menuBar">
@@ -27,5 +16,5 @@
 </template>
 
 <template name="oneGroup">
-    <div class="groups" id="{{_id}}" onclick="displayGroup()">{{name}}</div>
+    <div class="groups" id="{{_id}}">{{name}}</div>
 </template>
