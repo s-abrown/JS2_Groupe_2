@@ -49,8 +49,9 @@ Template.groupMessages.helpers({
 // Creating the helper to get the group name -> DOESN'T WORK !
 Template.groupName.helpers({
     group(){
-        let groupId = localStorage.getItem("groupId");
-        alert();
+        // let groupId = localStorage.getItem("groupId");
+        // console.log(groupId)
+        // return groupCollection.find({"_id": groupId}).fetch();
     }
 });
 
@@ -58,8 +59,8 @@ Template.groupName.helpers({
 Template.messageBox.events({
     'click .predefinedMessage' : function (e){
         let groupId = localStorage.getItem("groupId");
-
-        Meteor.call("sentMessages.insert", e.target.innerText, priority, groupId, Meteor.userId);
+        let user = Meteor.users.findOne({'_id' : Meteor.userId()}).username;
+        Meteor.call("sentMessages.insert", e.target.innerText, priority, groupId, user);
     },
 });
  
@@ -78,4 +79,3 @@ Template.groupPage.events({
         FlowRouter.go('manageGroup');
     }, 
 });
-

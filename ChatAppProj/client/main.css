@@ -242,12 +242,36 @@ a, a:active, a:hover {
 }
 
 /* Manage Group Settings */
-#title {
-    padding: 1em;
+#manageGroupHeader {
+    width : 100%;
+    height : 10%;
+    display : flex;
+    flex-direction : row;
+    background : #99bbff;
+    color : #ffffff;
+    font-size : 1.2em;
     text-align: center;
-    background-color: #99bbff;
-    color: #fff;
-    font-weight: bold;
+}
+
+#manageGroupHeader div{
+    height: 100%;
+    display: grid;
+    align-items: center;;
+}
+
+#manageGroupHeader #goBack {
+    width: 10%;
+}
+
+#manageGroupHeader #goBack:hover {
+    background-color: #66aaff;
+    cursor: pointer;
+}
+
+#manageGroupHeader #title {
+    width: 90%;
+    padding-right: 10%;
+    text-align: center;
 }
 
 /* Group Name Editing Field */
