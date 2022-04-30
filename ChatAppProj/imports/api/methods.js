@@ -45,10 +45,10 @@ Meteor.methods({
             $set:{name: newName}
         })
     },
-    'group.category'(groupId, groupCategory){
-        groupCollection.update({_id: groupId}), {
-            $set:{category: groupCategory}
-        }
-    }
+    'group.category'(groupId, groupType){
+        groupCollection.update({_id: groupId}, {
+            $set:{category: groupType}
+        })
+    },
 });
 

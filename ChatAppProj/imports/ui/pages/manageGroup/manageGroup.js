@@ -62,7 +62,7 @@ Template.manageGroup.events({
         let groupType = e.target.getAttribute("id");
         let groupId = localStorage.getItem("groupId");
         //Meteor.call('group.category', groupId, groupType)
-        Meteor.call('group.category')
+        Meteor.call('group.category', groupId, groupType);
     },
     'click #goBack' : function (e) {
         FlowRouter.go('group');
