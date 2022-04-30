@@ -1,17 +1,10 @@
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import { Meteor } from 'meteor/meteor';
-import { Session } from 'meteor/session';
 import { Template } from 'meteor/templating';
 
 import { predefinedMessagesCollection, sentMessagesCollection, customMessagesCollection, groupCollection } from '/imports/db/collections';
 
 import './group.html';
-
-// Unusable !!
-const getUser = () => Meteor.user();
-const isUserLogged = () => !!getUser();
-
-// Needs security fixes -> EVERYWHERE !!
 
 // Subscribe the client to the collections
 if (Meteor.isClient){
@@ -36,12 +29,6 @@ Template.messageBox.helpers({
 // Creating the helper to feed data to the group template 
 Template.groupMessages.helpers({
     sentMessages(){
-        // Going for the "session" way -> DOESN'T WORK !
-        // let groupId = Session.get("groupId");
-
-        // Going for the "javascript way" -> DOESN'T WORK !
-        // let groupId = Session.keys.groupId;
-
         // Going for the desperate way -> WORKS !
         let groupId = localStorage.getItem("groupId");
         return sentMessagesCollection.find({group: groupId}).fetch();

@@ -1,19 +1,17 @@
-import './signUp.html';
+import { check } from 'meteor/check';
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base'
+
+import './signUp.html';
 
 Template.signUp.events({
     'click #button' : function (e){
         let username = document.getElementById("userID").value;
         let password = document.getElementById("password").value;
-
+        check(username, String);
+        check(password, String);
 
         let r = Meteor.call('user.create', username, password);
-        console.log(r)
-        //let user = Meteor.users.findOne({'_id' : Meteor.userId()}).username;
+        console.log(r);
     },
 });
-
-// Create helpers for the page
-
-// Create events/listeners eg. eg. upon sumbmitting a new username/id/password password for a click

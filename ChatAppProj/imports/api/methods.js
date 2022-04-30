@@ -5,7 +5,11 @@ import { customMessagesCollection, predefinedMessagesCollection, sentMessagesCol
 // Method for the event below (displaying past messages from database):
 Meteor.methods({
     'sentMessages.insert'(m, priority, groupId, username) {
+        // adding checks to make sure all these are strings
         check(m, String);
+        check(priority, String);
+        check(groupId, String);
+        check(username, String);
 
         let ts = new Date().getTime();
         let date = new Date(ts);
@@ -20,6 +24,9 @@ Meteor.methods({
         })
     },
     'group.createGroup'(username){
+        // adding check to make sure usernames are strings
+        check(username, String);
+
         groupCollection.insert({
             name : 'Group name',
             admin : username, 
@@ -28,29 +35,41 @@ Meteor.methods({
         })
     },
     'customMessages.insert'(m, gid){
-        //Needs security check, and we have to add user
+        // adding checks to make sure messages are strings
+        check(m, String);
+        check(gid, String);
+
         customMessagesCollection.insert({
             message : m,
             group : gid,
         })
     },
     'customMessages.delete'(id){
-        // Add user
+        // adding checks to make sure messages are strings
+        check(id, String);
         customMessagesCollection.remove({_id:id})
-
     },
     'group.update'(newName, groupId){
+        // adding checks to make sure group names are strings
+        check(newName, String);
+        check(groupId, String);
         // Update name of group
         groupCollection.update({_id: groupId}, {
             $set:{name: newName}
         })
     },
     'group.category'(groupId, groupType){
+        // adding checks to make sure group categories are strings
+        check(groupId, String);
+        check(groupType, String);
         groupCollection.update({_id: groupId}, {
             $set:{category: groupType}
         })
     },
     'user.create'(username, password){
+        // adding checks to make sure this stuff are strings
+        check(username, String);
+        check(password, String);
         return Accounts.createUser({
             username: username,
             password: password,

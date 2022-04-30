@@ -8,6 +8,7 @@ import '/imports/api/methods';
 const addPredefinedMessages = message => predefinedMessagesCollection.insert(message)
 
 const messages = [
+    // Category: Default
     {
         message: 'Hello',
         category: 'default'
@@ -20,8 +21,21 @@ const messages = [
         message: 'Call me',
         category: 'default'
     },
+    // Category: Work
     {
         message: 'Updated',
+        category: 'work'
+    },
+    {
+        message: 'Deadline soon',
+        category: 'work'
+    },
+    {
+        message: 'Good work',
+        category: 'work'
+    },
+    {
+        message: 'Cannot come today',
         category: 'work'
     },
     {
@@ -29,7 +43,27 @@ const messages = [
         category: 'travel'
     },
     {
+        message: 'Leaving for a couple of weeks, bye',
+        category: 'travel'
+    },
+    {
+        message: 'Holiday, water plants',
+        category: 'travel'
+    },
+    {
+        message: 'Bag delivery at Geneva Airport is delayed',
+        category: 'travel'
+    },
+    {
         message: 'Be there soon',
+        category: 'friends'
+    },
+    {
+        message: 'Meet up now',
+        category: 'friends'
+    },
+    {
+        message: 'Veryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryverylongmessage',
         category: 'friends'
     },
 ]
@@ -60,15 +94,16 @@ Meteor.publish('customMessages', function publishCustomMessages(){
 });
 
 Meteor.startup(() => {
-    // reating a new user on server startup if won't find it in the database
-    if (!Accounts.findUserByUsername(SEED_USERNAME)) {
+    // Creating a new user on server startup if won't find it in the database
+    /* if (!Accounts.findUserByUsername(SEED_USERNAME)) {
         Accounts.createUser({
             username: SEED_USERNAME,
             password: SEED_PASSWORD,
         })
     } else {
         console.log(Meteor.users.findOne())
-    }
+    } */
+
     // Dropping (deleting stuff that is already in there) of the collection 
     predefinedMessagesCollection.rawCollection().drop();
     // Adding predefined messages to the collection

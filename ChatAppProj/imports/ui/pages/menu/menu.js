@@ -1,3 +1,4 @@
+import { check } from 'meteor/check';
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
@@ -19,22 +20,20 @@ Template.allGroups.helpers({
 });
 
 // event to reroute to page 404 if not logged in
-Template.rr2nf_03.onRendered(function(){
+/* Template.rr2nf_03.onRendered(function(){
     FlowRouter.go("notFound");
 });
+ */
 
 // Listener/ event: upon clicking on + a new group is created. 
 Template.menu.events({
     'click #newGroup' : function (e){
         let user = Meteor.users.findOne({'_id' : Meteor.userId()})._id;
+        check(user, String);
         Meteor.call("group.createGroup", user);
     },
     'click .groups' : function (e){
         let id = e.target.getAttribute("id");
-
-        // Storing group id for reuse elsewhere
-        // Session.set("groupId", id); // Needs security checks
-
         localStorage.setItem("groupId", id);
         FlowRouter.go("group")
     }

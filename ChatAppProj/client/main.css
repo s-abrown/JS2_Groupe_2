@@ -140,6 +140,7 @@ a, a:active, a:hover {
     margin : 1em 30% 1em 1em;
     padding : 1em;
     border-radius : 0.5em;
+    word-break: break-all;
 }
 
 /* Changing style for self messages*/
@@ -177,7 +178,11 @@ a, a:active, a:hover {
 }
 
 .predefinedMessage {
+    word-break: break-all;
     color : #fff;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
     cursor : pointer;
     background : linear-gradient(
         to right, 
