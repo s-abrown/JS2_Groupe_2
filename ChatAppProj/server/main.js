@@ -10,16 +10,28 @@ const addPredefinedMessages = message => predefinedMessagesCollection.insert(mes
 const messages = [
     {
         message: 'Hello',
-        category: 0
+        category: 'default'
     },
     {
         message: 'Bye',
-        category: 1
+        category: 'default'
     },
     {
         message: 'Call me',
-        category: 1
-    }
+        category: 'default'
+    },
+    {
+        message: 'Updated',
+        category: 'work'
+    },
+    {
+        message: 'Just landed',
+        category: 'travel'
+    },
+    {
+        message: 'Be there soon',
+        category: 'friends'
+    },
 ]
 
 // Creating a default user for the app
@@ -29,7 +41,7 @@ const SEED_PASSWORD = 'password';
 
 // Publish collection from server to client
 Meteor.publish('predefinedMessages', function publishPredefinedMessages(){
-    return predefinedMessagesCollection.find({category: 1});
+    return predefinedMessagesCollection.find({});
 });
 
 // Publish collection from server to client of sent messages --> temporary, we will need to add the id_group
@@ -45,11 +57,6 @@ Meteor.publish('publishGroups', function f(){
 // Publish custom messages for ManageGroup page
 Meteor.publish('customMessages', function publishCustomMessages(){
     return customMessagesCollection.find({});
-});
-
-// Publish group types for ManageGroup page
-Meteor.publish('groupType', function publishGroupType(){
-    return groupTypeCollection.find({});
 });
 
 Meteor.startup(() => {

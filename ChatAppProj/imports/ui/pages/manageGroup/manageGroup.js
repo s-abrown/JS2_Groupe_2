@@ -1,9 +1,8 @@
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import { Meteor } from 'meteor/meteor';
-import { Session } from 'meteor/session';
 import { Template } from 'meteor/templating';
 
-import { customMessagesCollection, groupTypeCollection } from '/imports/db/collections';
+import { customMessagesCollection, groupCollection } from '/imports/db/collections';
 
 import './manageGroup.html';
 
@@ -19,16 +18,11 @@ Template.manageGroup.helpers({
     // For custom messages
     customMessages(){
         let groupId = localStorage.getItem("groupId");
-
         return customMessagesCollection.find({group: groupId}).fetch();
     },
     // For the member list??
     users(){
         return users.find({}).fetch({});
-    },
-    // For the group type
-    groupType(){
-        return groupTypeCollection.find({}).fetch({});
     },
 });
 
@@ -61,13 +55,14 @@ Template.manageGroup.events({
     'click .member_x_button' : function (e) {
         let id = e.target.parentNode.getAttribute("id");
 
-        Meteor.call('user.delete', id);
+        Meteor.call('users.delete', id);
     },
     // Select a group type which will affect the predefined message list?
     'click .group_type' : function (e) {
-        let groupType = document.getElementById("group_type");
-
-        Meteor.call('groupType')
+        let groupType = e.target.getAttribute("id");
+        let groupId = localStorage.getItem("groupId");
+        //Meteor.call('group.category', groupId, groupType)
+        Meteor.call('group.category')
     },
     'click #goBack' : function (e) {
         FlowRouter.go('group');

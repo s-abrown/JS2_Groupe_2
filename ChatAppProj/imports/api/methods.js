@@ -24,6 +24,7 @@ Meteor.methods({
             name : 'Group name',
             admin : 'user', 
             users: ['user'],
+            category: 'other'
         })
     },
     'customMessages.insert'(m, gid){
@@ -43,6 +44,11 @@ Meteor.methods({
         groupCollection.update({_id: groupId}, {
             $set:{name: newName}
         })
+    },
+    'group.category'(groupId, groupCategory){
+        groupCollection.update({_id: groupId}), {
+            $set:{category: groupCategory}
+        }
     }
 });
 

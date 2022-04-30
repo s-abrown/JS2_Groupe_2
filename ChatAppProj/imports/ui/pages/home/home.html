@@ -12,8 +12,10 @@
 <!-- testing a log out template-->
 <template name="dashboard">
     {{#if currentUser}}
-        <p>You're logged in.</p>
-        <p><a href="#" class="logout">Logout</a></p>
+        <!-- <p>You're logged in.</p>
+        <p><a href="#" class="logout">Logout</a></p> -->
+        {{> rerouteToMenu}}
     {{/if}}
 </template>
 
+<template name="rerouteToMenu"></template>

@@ -23,7 +23,9 @@ if (Meteor.isClient){
 // Creating the helper for the predefined messages (predefined & custom)
 Template.messageBox.helpers({
     predefinedMessages(){
-        return predefinedMessagesCollection.find({}).fetch({});
+        let groupId = localStorage.getItem("groupId");
+        let categoryGroup = groupCollection.find({'_id' : groupId}).fetch()[0].category;
+        return predefinedMessagesCollection.find({category: categoryGroup}).fetch({});
     },
     customMessages(){
         let groupId = localStorage.getItem("groupId");
