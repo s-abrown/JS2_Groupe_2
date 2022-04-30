@@ -19,11 +19,11 @@ Meteor.methods({
             group: groupId
         })
     },
-    'group.createGroup'(){
+    'group.createGroup'(username){
         groupCollection.insert({
             name : 'Group name',
-            admin : 'user', 
-            users: ['user'],
+            admin : username, 
+            users: [username],
             category: 'other'
         })
     },
@@ -49,6 +49,14 @@ Meteor.methods({
         groupCollection.update({_id: groupId}, {
             $set:{category: groupType}
         })
+    },
+    'user.create'(username, password){
+        return Accounts.createUser({
+            username: username,
+            password: password,
+        })
+
+
     },
 });
 
