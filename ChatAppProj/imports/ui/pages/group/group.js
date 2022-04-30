@@ -78,6 +78,13 @@ Template.groupPage.events({
         FlowRouter.go('menu');
     }, 
     'click #groupSettings' : function(e){
-        FlowRouter.go('manageGroup');
+        let groupId = localStorage.getItem("groupId");
+        let adminGroup = groupCollection.find({'_id' : groupId}).fetch()[0].admin;
+        let userId = Meteor.userId();
+        if (adminGroup === userId){
+            FlowRouter.go('manageGroup');
+        } else {
+            alert('You are not autorised to change the group settings')
+        }
     }, 
 });

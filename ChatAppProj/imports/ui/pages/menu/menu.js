@@ -1,7 +1,6 @@
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
-import { Session } from 'meteor/session';
 
 import { groupCollection } from '/imports/db/collections';
 
@@ -22,7 +21,8 @@ Template.allGroups.helpers({
 // Listener/ event: upon clicking on + a new group is created. 
 Template.menu.events({
     'click #newGroup' : function (e){
-        Meteor.call("group.createGroup");
+        let user = Meteor.users.findOne({'_id' : Meteor.userId()})._id;
+        Meteor.call("group.createGroup", user);
     },
     'click .groups' : function (e){
         let id = e.target.getAttribute("id");
