@@ -57,6 +57,11 @@ Template.groupName.helpers({
     }
 });
 
+// event to reroute to 404 page if not logged in
+Template.rr2nf_01.onRendered(function(){
+    FlowRouter.go("notFound");
+});
+
 // Listener/ event: upon clicking on a message it gets sent and is displayed onscreen. 
 Template.messageBox.events({
     'click .predefinedMessage' : function (e){

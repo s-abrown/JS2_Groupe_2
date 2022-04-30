@@ -1,4 +1,8 @@
 <template name="manageGroup">
+    {{#if currentUser}}
+    {{else}}
+        {{> rr2nf_02}}
+    {{/if}}
      <!-- Page Title-->
      <div id="manageGroupHeader">
         <div id="goBack">Back</div>
@@ -61,3 +65,6 @@
         <div class="message_x_button" >x</div>
     </div>
 </template>
+
+<!-- Rerouting to 404 page if not logged in -->
+<template name="rr2nf_02"></template>

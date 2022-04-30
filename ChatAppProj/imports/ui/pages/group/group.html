@@ -1,4 +1,8 @@
 <template name="groupPage">
+    {{#if currentUser}}
+    {{else }}
+        {{> rr2nf_01}}
+    {{/if}}
     <div id="groupBox">
         <!-- Top banner with infos and settings -->
         <div id="groupInfo">
@@ -121,3 +125,6 @@
 <template name="groupName">
     <input type="text" id="groupTitle" placeholder="Group name" value="{{name}}">
 </template>
+
+<!-- TEMPLATE TO REROUTE TO 404 PAGE IF USER IS NOT LOGGED IN -->
+<template name="rr2nf_01"></template>

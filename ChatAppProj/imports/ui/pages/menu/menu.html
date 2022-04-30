@@ -1,4 +1,8 @@
 <template name="menu">
+    {{#if currentUser}}
+    {{else}}
+        {{> rr2nf_03}}
+    {{/if}}
     <div id="menu">
         <div id="menuBar">
             <input id="newGroup" type="button" value="+">
@@ -18,3 +22,6 @@
 <template name="oneGroup">
     <div class="groups" id="{{_id}}">{{name}}</div>
 </template>
+
+<!-- Template to reroute to page 404 -->
+<template name="rr2nf_03"></template>

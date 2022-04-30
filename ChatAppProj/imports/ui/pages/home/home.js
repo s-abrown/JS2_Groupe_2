@@ -3,7 +3,6 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import './home.html';
 
-
 // Code for logging in
 Template.home.events({
     'click #button'(e) {
@@ -15,14 +14,6 @@ Template.home.events({
         if(Meteor.userId){
             FlowRouter.go("menu")
         }
-    }
-});
-
-// Code for logging out
-Template.dashboard.events({
-    'click .logout' : function(event){
-        event.preventDefault();
-        Meteor.logout();
     }
 });
 

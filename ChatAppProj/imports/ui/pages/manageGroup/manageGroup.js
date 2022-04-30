@@ -26,6 +26,12 @@ Template.manageGroup.helpers({
     },
 });
 
+
+// Reroute function to 404 page. 
+Template.rr2nf_02.onRendered(function(){
+    FlowRouter.go("notFound");
+});
+
 // Listener/event: 
 Template.manageGroup.events({
     // Upon submitting a new message it is displayed in the message list
