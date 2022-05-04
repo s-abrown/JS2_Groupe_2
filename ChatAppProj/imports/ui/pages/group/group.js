@@ -17,7 +17,7 @@ if (Meteor.isClient){
 Template.messageBox.helpers({
     predefinedMessages(){
         let groupId = localStorage.getItem("groupId");
-        let categoryGroup = groupCollection.find({'_id' : groupId}).fetch()[0].category;
+        let categoryGroup = groupCollection.findOne({'_id' : groupId}).category;
         return predefinedMessagesCollection.find({category: categoryGroup}).fetch({});
     },
     customMessages(){
@@ -37,10 +37,12 @@ Template.groupMessages.helpers({
 
 // Creating the helper to get the group name -> DOESN'T WORK !
 Template.groupName.helpers({
-    group(){
-        // let groupId = localStorage.getItem("groupId");
+    name(){
+        let groupId = localStorage.getItem("groupId");
         // console.log(groupId)
-        // return groupCollection.find({"_id": groupId}).fetch();
+        let returnedGroupName = groupCollection.findOne({"_id": groupId}).name;
+        console.log(returnedGroupName)
+        return returnedGroupName
     }
 });
 
@@ -78,5 +80,62 @@ Template.groupPage.events({
         } else {
             alert('You are not autorised to change the group settings')
         }
-    }, 
+    },
+    'click #typeMessage': function() {
+        let w = window.innerWidth;
+        let h = window.innerHeight;
+
+        let typeMessage = document.getElementById("typeMessage");
+        let messageBox = document.getElementById("messageBox");
+        let messages = document.getElementById("messages");
+        let pm = document.getElementsByClassName("predefinedMessage");
+        let mouse = [];
+        let priority = null;
+        
+        // Tracking mouse position (used later in code)
+        document.addEventListener("mousemove", e => {
+            mouse = [e.x, e.y];
+        });
+
+        // Displaying the message box
+        messageBox.style.display = "flex";
+        messages.setAttribute("class", "blurred");
+
+        // Updating predifined messages
+        pm = document.getElementsByClassName("predefinedMessage");
+
+        for(m of pm){
+            m.addEventListener("click", function(){
+                let id = this.getAttribute("id");
+
+                // Getting message's x1 and x2 position on screen
+                let c = m.getBoundingClientRect();
+                let x1 = +c.left.toFixed();
+                let x2 = Number(x1 + c.width);
+                let inc = (x2-x1)/3;
+
+                // Defining intervals and checking mouse position
+                let pos_x = mouse[0];
+                
+                if( (pos_x >= x1) && (pos_x < x1+inc) ){
+                    priority = "priority_high";
+                }
+                else if( (pos_x >= x1+inc) && (pos_x < x1+inc*2) ){
+                    priority = "priority_medium";
+                }
+                else if( (pos_x >= x1+inc*2) && (pos_x <= x1+inc*3) ){
+                    priority = "priority_low";
+                }
+                else{
+                    priority = "priority_low";
+                }
+            });
+        }
+
+        // Hiding the message box when clicking on the main box
+        messages.addEventListener("click", function(){
+            messageBox.style.display = "none";
+            messages.removeAttribute("class", "blurred");
+        });
+    }
 });

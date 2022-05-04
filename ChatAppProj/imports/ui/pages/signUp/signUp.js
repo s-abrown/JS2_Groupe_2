@@ -11,7 +11,12 @@ Template.signUp.events({
         check(username, String);
         check(password, String);
 
-        let r = Meteor.call('user.create', username, password);
-        console.log(r);
+        Meteor.call('user.create', username, password, function(err, res) {
+            if(err) {
+                console.log(err)
+            } else if (res) {
+                console.log(res)
+            }
+        });
     },
 });
