@@ -41,7 +41,6 @@ Template.groupName.helpers({
         let groupId = localStorage.getItem("groupId");
         // console.log(groupId)
         let returnedGroupName = groupCollection.findOne({"_id": groupId}).name;
-        console.log(returnedGroupName)
         return returnedGroupName
     }
 });
@@ -54,6 +53,43 @@ Template.rr2nf_01.onRendered(function(){
 // Listener/ event: upon clicking on a message it gets sent and is displayed onscreen. 
 Template.messageBox.events({
     'click .predefinedMessage' : function (e){
+        let w = window.innerWidth;
+        let h = window.innerHeight;
+
+        let pm = document.getElementsByClassName("predefinedMessage");
+        let mouse = [];
+        let priority = null;
+        
+        // Tracking mouse position (used later in code)
+        document.addEventListener("mousemove", e => {
+            mouse = [e.x, e.y];
+        });
+
+        // Updating predifined messages
+        pm = document.getElementsByClassName("predefinedMessage");
+
+        // Getting message's x1 and x2 position on screen
+        let c = e.target.offsetWidth;
+        let x1 = 0;
+        let x2 = e.target.offsetWidth;
+        let inc = (x2-x1)/3;
+
+        // Defining intervals and checking mouse position
+        let pos_x = e.offsetX
+
+        if( (pos_x >= x1) && (pos_x < x1+inc) ){
+            priority = "priority_high";
+        }
+        else if( (pos_x >= x1+inc) && (pos_x < x1+inc*2) ){
+            priority = "priority_medium";
+        }
+        else if( (pos_x >= x1+inc*2) && (pos_x <= x1+inc*3) ){
+            priority = "priority_low";
+        }
+        else{
+            priority = "priority_low";
+        }
+
         let groupId = localStorage.getItem("groupId");
         let user = Meteor.users.findOne({'_id' : Meteor.userId()}).username;
         Meteor.call("sentMessages.insert", e.target.innerText, priority, groupId, user);
@@ -81,61 +117,17 @@ Template.groupPage.events({
             alert('You are not autorised to change the group settings')
         }
     },
-    'click #typeMessage': function() {
-        let w = window.innerWidth;
-        let h = window.innerHeight;
-
-        let typeMessage = document.getElementById("typeMessage");
+    'click #typeMessage': function(e) {
         let messageBox = document.getElementById("messageBox");
         let messages = document.getElementById("messages");
-        let pm = document.getElementsByClassName("predefinedMessage");
-        let mouse = [];
-        let priority = null;
-        
-        // Tracking mouse position (used later in code)
-        document.addEventListener("mousemove", e => {
-            mouse = [e.x, e.y];
-        });
 
         // Displaying the message box
         messageBox.style.display = "flex";
         messages.setAttribute("class", "blurred");
-
-        // Updating predifined messages
-        pm = document.getElementsByClassName("predefinedMessage");
-
-        for(m of pm){
-            m.addEventListener("click", function(){
-                let id = this.getAttribute("id");
-
-                // Getting message's x1 and x2 position on screen
-                let c = m.getBoundingClientRect();
-                let x1 = +c.left.toFixed();
-                let x2 = Number(x1 + c.width);
-                let inc = (x2-x1)/3;
-
-                // Defining intervals and checking mouse position
-                let pos_x = mouse[0];
-                
-                if( (pos_x >= x1) && (pos_x < x1+inc) ){
-                    priority = "priority_high";
-                }
-                else if( (pos_x >= x1+inc) && (pos_x < x1+inc*2) ){
-                    priority = "priority_medium";
-                }
-                else if( (pos_x >= x1+inc*2) && (pos_x <= x1+inc*3) ){
-                    priority = "priority_low";
-                }
-                else{
-                    priority = "priority_low";
-                }
-            });
-        }
-
-        // Hiding the message box when clicking on the main box
-        messages.addEventListener("click", function(){
-            messageBox.style.display = "none";
-            messages.removeAttribute("class", "blurred");
-        });
+    },
+    'click #messages': function(e) {
+        let mb = document.getElementById("messageBox");
+        mb.style.display = "none";
+        e.target.removeAttribute("class", "blurred");
     }
 });

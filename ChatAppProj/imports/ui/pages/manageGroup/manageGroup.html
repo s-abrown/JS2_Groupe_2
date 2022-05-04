@@ -1,62 +1,63 @@
 <template name="manageGroup">
-<!--     {{#if currentUser}}
+    {{#if currentUser}}
+        <!-- Page Title-->
+        <div id="manageGroupHeader">
+            <div id="goBack">Back</div>
+            <div id="title">Settings</div>
+        </div>
+
+        <!-- Group Name Section -->
+        <div class="block_container">
+            <!-- Group name selection -->
+            <div id="group_title">
+                <div class="label">Group type</div>
+                <div id="group_type_container">
+                    <div class="group_type" id="work">Work</div>
+                    <div class="group_type" id="travel">Travel</div>
+                    <div class="group_type" id="friends">Friends</div>
+                    <div class="group_type" id="other">Other</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Member selection section-->
+        <div class="block_container">
+            <!-- Member Editing Field -->
+            <div id="add_member">
+                <div class="label">Members</div>
+                <div id="member_edit_container">
+                    <input id="input_add_member" type="text" placeholder="Add member (email)">
+                    <div class="add" id="add_member">Add</div>
+                </div>
+            </div>
+            <!-- Member List -->
+            <div id="member_list">
+                <div class="memberContainer" id="">
+                    <div class="member_list">Member 1</div>
+                    <div class="member_x_button" >x</div>
+                </div> 
+            </div>
+        </div>
+
+        <!-- Message selection section -->
+        <div class="block_container">
+            <!-- Message Editing Field -->
+            <div id="message_selection">
+                <div class="label">Messages</div> 
+                <div id="message_edit_container">
+                    <input id="input_add_message" type="text" placeholder="Enter message">
+                    <div class= "add" id="button_add_message">Add</div>
+                </div>
+
+                {{#each customMessages}}
+                    {{> cmt}}
+                {{/each}}
+            </div>
+        </div>
+
     {{else}}
-        {{> rr2nf_02}}
-    {{/if}} -->
-     <!-- Page Title-->
-     <div id="manageGroupHeader">
-        <div id="goBack">Back</div>
-        <div id="title">Settings</div>
-    </div>
-
-     <!-- Group Name Section -->
-     <div class="block_container">
-        <!-- Group name selection -->
-        <div id="group_title">
-            <div class="label">Group type</div>
-            <div id="group_type_container">
-                <div class="group_type" id="work">Work</div>
-                <div class="group_type" id="travel">Travel</div>
-                <div class="group_type" id="friends">Friends</div>
-                <div class="group_type" id="other">Other</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Member selection section-->
-    <div class="block_container">
-        <!-- Member Editing Field -->
-        <div id="add_member">
-            <div class="label">Members</div>
-            <div id="member_edit_container">
-                <input id="input_add_member" type="text" placeholder="Add member (email)">
-                <div class="add" id="add_member">Add</div>
-            </div>
-        </div>
-        <!-- Member List -->
-        <div id="member_list">
-            <div class="memberContainer" id="">
-                <div class="member_list">Member 1</div>
-                <div class="member_x_button" >x</div>
-            </div> 
-        </div>
-    </div>
-
-    <!-- Message selection section -->
-    <div class="block_container">
-        <!-- Message Editing Field -->
-        <div id="message_selection">
-            <div class="label">Messages</div> 
-            <div id="message_edit_container">
-                <input id="input_add_message" type="text" placeholder="Enter message">
-                <div class= "add" id="button_add_message">Add</div>
-            </div>
-
-            {{#each customMessages}}
-                {{> cmt}}
-            {{/each}}
-        </div>
-    </div>
+        {{> rr2nf_01}}
+    {{/if}}
 </template>
 
 <template name="cmt">
@@ -67,4 +68,4 @@
 </template>
 
 <!-- Rerouting to 404 page if not logged in -->
-<!-- <template name="rr2nf_02"></template> -->
+<template name="rr2nf_02"></template>

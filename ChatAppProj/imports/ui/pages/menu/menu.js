@@ -19,12 +19,6 @@ Template.allGroups.helpers({
     },
 });
 
-// event to reroute to page 404 if not logged in
-/* Template.rr2nf_03.onRendered(function(){
-    FlowRouter.go("notFound");
-});
- */
-
 // Listener/ event: upon clicking on + a new group is created. 
 Template.menu.events({
     'click #newGroup' : function (e){
@@ -37,4 +31,9 @@ Template.menu.events({
         localStorage.setItem("groupId", id);
         FlowRouter.go("group")
     }
+});
+
+// event to reroute to page 404 if not logged in
+Template.rr2nf_03.onRendered(function(){
+    FlowRouter.go("notFound");
 });

@@ -9,11 +9,17 @@ Template.home.events({
         let username = document.getElementById("userID").value;
         let password = document.getElementById("password").value;
 
-        Meteor.loginWithPassword(username, password);
-
-        if(Meteor.userId){
-            FlowRouter.go("menu")
-        }
+        Meteor.loginWithPassword(username, password, function(err, res){
+            if (err) {
+                Swal.fire(
+                    'Error!',
+                    err.message,
+                    'error'
+                  )
+            } else {
+                FlowRouter.go("menu")
+            }
+        });
     }
 });
 

@@ -421,14 +421,11 @@ a, a:active, a:hover {
     margin: 1em 0;
 }
 
-
-
-
 /* 404 Page */
-
-h2 {
+#titre_404 {
     background-color: #66aaff;
     text-align: center;
+    line-height: 2em;
 }
 
 .container {

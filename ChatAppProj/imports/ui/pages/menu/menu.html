@@ -1,15 +1,16 @@
 <template name="menu">
-    <!-- {{#unless currentUser}}
+    {{#if currentUser}}
+        <div id="menu">
+            <div id="menuBar">
+                <input id="newGroup" type="button" value="+">
+            </div>
+            <div id="groupsLayout">
+                {{> allGroups}}
+            </div>
+        </div>
+    {{else}}
         {{> rr2nf_03}}
-    {{/unless}} -->
-    <div id="menu">
-        <div id="menuBar">
-            <input id="newGroup" type="button" value="+">
-        </div>
-        <div id="groupsLayout">
-            {{> allGroups}}
-        </div>
-    </div> 
+    {{/if}}
 </template>
 
 <template name="allGroups">
@@ -23,4 +24,4 @@
 </template>
 
 <!-- Template to reroute to page 404 -->
-<!-- <template name="rr2nf_03"></template> -->
+<template name="rr2nf_03"></template>

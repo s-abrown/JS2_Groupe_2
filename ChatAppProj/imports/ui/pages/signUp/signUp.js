@@ -1,6 +1,7 @@
+import { Accounts } from 'meteor/accounts-base';
 import { check } from 'meteor/check';
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import { Meteor } from 'meteor/meteor';
-import { Accounts } from 'meteor/accounts-base'
 
 import './signUp.html';
 
@@ -13,9 +14,13 @@ Template.signUp.events({
 
         Meteor.call('user.create', username, password, function(err, res) {
             if(err) {
-                console.log(err)
+                Swal.fire(
+                    'Error!',
+                    err.message,
+                    'error'
+                  )
             } else if (res) {
-                console.log(res)
+                FlowRouter.go("home");
             }
         });
     },

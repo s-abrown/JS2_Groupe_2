@@ -1,14 +1,16 @@
 <template name="home">
     {{#if currentUser}}
         {{> rerouteToMenu}}
+    {{else}}
+        <div id="mainBox">
+            <img src="images/logo.png" alt="Logo">
+            <input id="userID" type="text" placeholder="User ID" required>
+            <input id="password" type="password" placeholder="Password" required>
+            <input id="button" type="button" value="Login">
+            <a href="sign-up">Sign Up page</a>
+        </div>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     {{/if}}
-    <div id="mainBox">
-        <img src="images/logo.png" alt="Logo">
-        <input id="userID" type="text" placeholder="User ID" required>
-        <input id="password" type="password" placeholder="Password" required>
-        <input id="button" type="button" value="Login">
-        <a href="sign-up">Sign Up page</a>
-    </div>
 </template>
 
 <template name="rerouteToMenu"></template> 
