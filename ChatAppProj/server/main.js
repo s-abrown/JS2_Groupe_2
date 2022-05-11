@@ -27,6 +27,10 @@ const messages = [
         category: 'work'
     },
     {
+        message: 'Call me',
+        category: 'work'
+    },
+    {
         message: 'Meeting in 15 minutes',
         category: 'work'
     },
@@ -43,16 +47,16 @@ const messages = [
         category: 'work',
     },
     {
-        message: 'Be there soon',
+        message: 'Assignment has been updated',
         category: 'work'
-    }
+    },
     // Category: Travel
     {
         message: 'Just landed',
         category: 'travel'
     },
     {
-        message: 'Leaving for a couple of weeks, bye',
+        message: 'Meeting at our assigned spot in 15 minutes',
         category: 'travel'
     },
     {
@@ -63,6 +67,7 @@ const messages = [
         message: 'Bag delivery at Geneva Airport is delayed',
         category: 'travel'
     },
+    // Category: Friends
     {
         message: 'Be there soon',
         category: 'friends'
@@ -72,10 +77,22 @@ const messages = [
         category: 'friends'
     },
     {
-        message: 'Veryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryverylongmessage',
+        message: 'Call me',
         category: 'friends'
     },
-    // Friends
+    {
+        message: 'Lunch?',
+        category: 'friends'
+    },
+    {
+        message: 'See you soon',
+        category: 'friends'
+    },
+    {
+        message: '',
+        category: 'friends'
+    },
+    // Other
 
 ]
 

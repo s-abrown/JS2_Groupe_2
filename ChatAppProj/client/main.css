@@ -137,7 +137,7 @@ a, a:active, a:hover {
 
 /* Default style for messages */
 .message {
-    margin : 1em 30% 1em 1em;
+    margin : 1em;
     padding : 1em;
     border-radius : 0.5em;
     word-break: break-all;
@@ -379,11 +379,13 @@ a, a:active, a:hover {
     width: 90%;
     margin-right: 2%;
     background-color: #99bbff;
-    font-weight: 600;
     border-radius: 1em;
-    text-align: center;
     padding: 0.5em;
     margin: 0.3em;
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .memberContainer div:nth-child(2),
@@ -396,6 +398,8 @@ a, a:active, a:hover {
     padding: 0.5em;
     margin: 0.3em;
 }
+
+
 
 /* Message Editing Field */
 #message_edit_container {

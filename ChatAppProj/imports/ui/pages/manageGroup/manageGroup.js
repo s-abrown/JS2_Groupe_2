@@ -26,7 +26,7 @@ Template.manageGroup.helpers({
             return r;
         });
         console.log(table)
-        return [table]
+        return table
     },
 });
 
