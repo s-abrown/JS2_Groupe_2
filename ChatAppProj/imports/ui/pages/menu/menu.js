@@ -15,7 +15,8 @@ if (Meteor.isClient){
 // Creating the helper to feed data to the group template
 Template.allGroups.helpers({
     group(){
-        return groupCollection.find({}).fetch();
+        let user = Meteor.users.findOne({'_id' : Meteor.userId()})._id;
+        return groupCollection.find({"users":{$in:[user]}}).fetch();
     },
 });
 

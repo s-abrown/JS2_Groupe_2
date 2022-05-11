@@ -19,9 +19,14 @@ Template.manageGroup.helpers({
         let groupId = localStorage.getItem("groupId");
         return customMessagesCollection.find({group: groupId}).fetch();
     },
-    // For the member list??
-    users(){
-        return users.find({}).fetch({});
+    // For upadting the users in the group member list
+    getUsers(){
+        let groupId = localStorage.getItem("groupId");
+        let table = Meteor.call('membersDisplay', groupId, (e,r) => {
+            return r;
+        });
+        console.log(table)
+        return [table]
     },
 });
 
@@ -70,5 +75,6 @@ Template.manageGroup.events({
         //Meteor.call('group.category', groupId, groupType)
         Meteor.call('user.add', userName, groupId);
     }
+    // Deletes a member from the memberlist
 });
 

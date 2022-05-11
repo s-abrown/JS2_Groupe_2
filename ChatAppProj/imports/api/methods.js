@@ -85,6 +85,17 @@ Meteor.methods({
                 $push:{users : thingToCheck._id}
             })
         }
+    },
+    'membersDisplay'(groupId){
+        let groupUsers = groupCollection.findOne({_id:groupId}).users;
+        let table = [];
+        for (i = 0; i < groupUsers.length; i++){
+            let userId = groupUsers[i];
+            let specificUsername = Meteor.users.findOne({_id: userId}).username;
+            let userObj = {_id : userId, username : specificUsername};
+            table.push(userObj)
+        }
+        return table;
     }
 })
 

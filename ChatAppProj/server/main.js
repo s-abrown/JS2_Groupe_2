@@ -18,16 +18,16 @@ const messages = [
         category: 'default'
     },
     {
-        message: 'Call me',
+        message: 'Call me ASAP',
         category: 'default'
     },
     // Category: Work
     {
-        message: 'Updated',
+        message: 'Assignment completed',
         category: 'work'
     },
     {
-        message: 'Deadline soon',
+        message: 'Meeting in 15 minutes',
         category: 'work'
     },
     {
@@ -35,9 +35,18 @@ const messages = [
         category: 'work'
     },
     {
-        message: 'Cannot come today',
+        message: 'Running late for work',
         category: 'work'
     },
+    {
+        message: 'Be there soon',
+        category: 'work',
+    },
+    {
+        message: 'Be there soon',
+        category: 'work'
+    }
+    // Category: Travel
     {
         message: 'Just landed',
         category: 'travel'
@@ -66,6 +75,8 @@ const messages = [
         message: 'Veryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryverylongmessage',
         category: 'friends'
     },
+    // Friends
+
 ]
 
 // Creating a default user for the app
