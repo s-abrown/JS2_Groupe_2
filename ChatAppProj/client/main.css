@@ -438,11 +438,10 @@ a, a:active, a:hover {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 100%;
+    width: 10px;
     height: auto;
     transition: .5s ease;
     backface-visibility: hidden;
-
   }
   
   .middle {

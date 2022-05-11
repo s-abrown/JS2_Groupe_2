@@ -1,16 +1,18 @@
 <template name="menu">
-    {{#if currentUser}}
-        <div id="menu">
-            <div id="menuBar">
-                <input id="newGroup" type="button" value="+">
+    {{#unless LoggingIn }}
+        {{#if currentUser}}
+            <div id="menu">
+                <div id="menuBar">
+                    <input id="newGroup" type="button" value="+">
+                </div>
+                <div id="groupsLayout">
+                    {{> allGroups}}
+                </div>
             </div>
-            <div id="groupsLayout">
-                {{> allGroups}}
-            </div>
-        </div>
-    {{else}}
-        {{> rr2nf_03}}
-    {{/if}}
+        {{else}}
+            {{> rr2nf_03}}
+        {{/if}}
+    {{/unless}}
 </template>
 
 <template name="allGroups">

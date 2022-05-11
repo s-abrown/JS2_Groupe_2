@@ -1,30 +1,31 @@
 <template name="groupPage">
-    {{#if currentUser}}
-        <div id="groupBox">
-            <!-- Top banner with infos and settings -->
-            <div id="groupInfo">
-                <div id="goBack">Back</div>
-                {{> groupName}}
-                <div id="groupSettings">Settings</div>
-            </div>
-            <!-- All messages of the group displayed here -->
-            <div id="messages">
-                {{> groupMessages}}
-            </div>
-            <!-- Button to send a new message -->
-            <div id="typeMessage">
-                Send message
-            </div>
+    {{#unless LoggingIn}}
+        {{#if currentUser}}
+            <div id="groupBox">
+                <!-- Top banner with infos and settings -->
+                <div id="groupInfo">
+                    <div id="goBack">Back</div>
+                    {{> groupName}}
+                    <div id="groupSettings">Settings</div>
+                </div>
+                <!-- All messages of the group displayed here -->
+                <div id="messages">
+                    {{> groupMessages}}
+                </div>
+                <!-- Button to send a new message -->
+                <div id="typeMessage">
+                    Send message
+                </div>
 
-            <!-- Pop-up window to display predefined messages -->
-            <div id="messageBox">
-                {{> messageBox}}
+                <!-- Pop-up window to display predefined messages -->
+                <div id="messageBox">
+                    {{> messageBox}}
+                </div>
             </div>
-        </div>
-    {{else}}
-        {{> rr2nf_01}}
-    {{/if}}
-    
+        {{else}}
+            {{> rr2nf_01}}
+        {{/if}}
+    {{/unless}}
 </template>
 
 <!--FOR MESSAGE POP UP (predefined) -->

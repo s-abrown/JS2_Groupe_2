@@ -48,13 +48,6 @@ Template.manageGroup.events({
         let id = e.target.parentNode.getAttribute("id");
         Meteor.call('customMessages.delete', id);
     },
-    // Upon adding a new member to a group, the member is displayed in the member list
-    'click #member_list' : function (e) {
-        let memberList = document.getElementById("input_add_member").value;
-        // let memberId = localStorage.getItem("memberId");
-        document.getElementById("input_add_member").value = '';
-        Meteor.call('users.insert', memberList, memberId);
-    },
     // Deletes a member from the member list
     'click .member_x_button' : function (e) {
         let id = e.target.parentNode.getAttribute("id");
@@ -69,6 +62,13 @@ Template.manageGroup.events({
     },
     'click #goBack' : function (e) {
         FlowRouter.go('group');
+    },
+    // adding members to group list 
+    'click #button_add_member' : function (e) {
+        let userName = document.getElementById("input_add_member").value;
+        let groupId = localStorage.getItem("groupId");
+        //Meteor.call('group.category', groupId, groupType)
+        Meteor.call('user.add', userName, groupId);
     }
 });
 

@@ -75,5 +75,16 @@ Meteor.methods({
             password: password,
         })
     },
-});
+    'user.add'(username, groupId){
+        check(username, String);
+        check(groupId, String);
+        let thingToCheck = Meteor.users.findOne({'username':username})
+
+        if (thingToCheck){
+            groupCollection.update({_id: groupId}, {
+                $push:{users : thingToCheck._id}
+            })
+        }
+    }
+})
 
