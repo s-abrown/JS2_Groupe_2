@@ -81,15 +81,11 @@ const messages = [
         category: 'friends'
     },
     {
-        message: 'Lunch?',
+        message: 'Food?',
         category: 'friends'
     },
     {
         message: 'See you soon',
-        category: 'friends'
-    },
-    {
-        message: '',
         category: 'friends'
     },
     // Other

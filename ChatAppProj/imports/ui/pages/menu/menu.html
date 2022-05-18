@@ -3,6 +3,7 @@
         {{#if currentUser}}
             <div id="menu">
                 <div id="menuBar">
+                    {{>displayUsername}}
                     <input id="newGroup" type="button" value="+">
                 </div>
                 <div id="groupsLayout">
@@ -23,6 +24,10 @@
 
 <template name="oneGroup">
     <div class="groups" id="{{_id}}">{{name}}</div>
+</template>
+
+<template name="displayUsername">
+    <div id="logout">Welcome, {{username}}</div>
 </template>
 
 <!-- Template to reroute to page 404 -->

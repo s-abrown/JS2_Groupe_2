@@ -12,7 +12,7 @@ if (Meteor.isClient){
     Meteor.subscribe('customMessages');
 }
 
-// Creating helpers:
+// Creating helpers for custom messages and for group users:
 Template.manageGroup.helpers({
     // For custom messages
     customMessages(){
@@ -25,10 +25,44 @@ Template.manageGroup.helpers({
         let table = Meteor.call('membersDisplay', groupId, (e,r) => {
             return r;
         });
-        console.log(table)
+        console.log('This is:' + table)
         return table
     },
 });
+
+// Creating helpers for the group type:
+Template.groupTypesT.helpers({
+    specGroupType(){
+        let groupId = localStorage.getItem("groupId");
+        let category = groupCollection.findOne({"_id": groupId}).category;
+         // Change colour of the group type category when you click on it
+        let groupTypes = {"work" : 0, "travel" : 0, "friends" : 0, "other" : 0};
+
+        // Sets
+        groupTypes[category] = 1;
+
+        // New array
+        let allGroups = [];
+
+        // Adds each group to array
+        for(g in groupTypes){
+            let className = '';
+
+            // If the group is the one selected, add class
+            if(groupTypes[g]){
+                let className = 'selectedGroup';
+            }
+
+            // Creates group object
+            let group = {'name' : g, 'class' : className};
+
+            // Pushes object into array
+            allGroups.push(group)
+        }
+
+        return allGroups
+    }
+})
 
 // Reroute function to 404 page. 
 Template.rr2nf_02.onRendered(function(){
@@ -58,7 +92,7 @@ Template.manageGroup.events({
         let id = e.target.parentNode.getAttribute("id");
         Meteor.call('users.delete', id);
     },
-    // Select a group type which will affect the predefined message list?
+    // Select a group type which will affect the predefined message list displayed
     'click .group_type' : function (e) {
         let groupType = e.target.getAttribute("id");
         let groupId = localStorage.getItem("groupId");
@@ -74,7 +108,6 @@ Template.manageGroup.events({
         let groupId = localStorage.getItem("groupId");
         //Meteor.call('group.category', groupId, groupType)
         Meteor.call('user.add', userName, groupId);
-    }
-    // Deletes a member from the memberlist
+    },
 });
 

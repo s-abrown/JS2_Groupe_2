@@ -19,8 +19,14 @@ Template.allGroups.helpers({
         return groupCollection.find({"users":{$in:[user]}}).fetch();
     },
 });
+// Helper to feed in the logged in user name and log out option
+Template.displayUsername.helpers({
+    username(){
+        return Meteor.users.findOne({'_id' : Meteor.userId()}).username;
+    }
+})
 
-// Listener/ event: upon clicking on + a new group is created. 
+// Event: upon clicking on + a new group is created. 
 Template.menu.events({
     'click #newGroup' : function (e){
         let user = Meteor.users.findOne({'_id' : Meteor.userId()})._id;
@@ -31,10 +37,19 @@ Template.menu.events({
         let id = e.target.getAttribute("id");
         localStorage.setItem("groupId", id);
         FlowRouter.go("group")
+    },
+    // Redirect to home page upon clicking the logout div
+    'click #logout' : function(e){
+        Meteor.logout(function(e){
+            if(!e){
+                FlowRouter.go("home")
+            }
+        });
     }
 });
 
-// event to reroute to page 404 if not logged in
+// Reroute to page 404 if not logged in
 Template.rr2nf_03.onRendered(function(){
     FlowRouter.go("notFound");
 });
+

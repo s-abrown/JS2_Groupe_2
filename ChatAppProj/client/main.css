@@ -6,6 +6,7 @@ body,html {
   padding: 0;
   width: 100%;
   height: 100%;
+  background-color: #d7d7d7;
 }
 
 *{
@@ -67,7 +68,7 @@ a, a:active, a:hover {
     height : 10%;
     display : flex;
     flex-direction : row;
-    background : #99bbff;
+    background-color : #99bbff;
     color : #ffffff;
     font-size : 1.2em;
 }
@@ -115,13 +116,14 @@ a, a:active, a:hover {
     overflow-y : scroll;
     box-sizing : border-box;
     color : #fff;
-    background : #999;
+    display: flex;
+    flex-direction: column-reverse;
 }
 
 #typeMessage {
     width : 100%;
     height : 10%;
-    background : #99bbff;
+    background-color : #99bbff;
     color : #fff;
     cursor : pointer;
     box-sizing : border-box;
@@ -214,9 +216,15 @@ a, a:active, a:hover {
     width: 100%;
     background-color: #99bbff;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     box-sizing : border-box;
     padding: 1em;
+}
+
+#logout {
+    line-height: 200%;
+    cursor: pointer;
+    font-weight: bold;
 }
 
 #newGroup{
@@ -235,7 +243,6 @@ a, a:active, a:hover {
 
 #groupsLayout{
     padding: 5% 10%;
-    background-color: #999;
 }
 
 .groups{
@@ -345,8 +352,17 @@ a, a:active, a:hover {
     margin: 0 2.5%;
 }
 
-.group_type div:hover{
+#group_type_container div:hover{
     background-color: #66aaff;
+    cursor: pointer;
+}
+
+#group_type_container .selectedGroup{
+    background-color: pink;
+}
+
+#group_type_container .selectedGroup:hover{
+    background-color: hotpink;
 }
 
 /* Member Editing Field */
@@ -398,8 +414,6 @@ a, a:active, a:hover {
     padding: 0.5em;
     margin: 0.3em;
 }
-
-
 
 /* Message Editing Field */
 #message_edit_container {

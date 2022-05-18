@@ -59,13 +59,14 @@ Template.messageBox.events({
         let pm = document.getElementsByClassName("predefinedMessage");
         let mouse = [];
         let priority = null;
-        
+    
+
         // Tracking mouse position (used later in code)
         document.addEventListener("mousemove", e => {
             mouse = [e.x, e.y];
         });
 
-        // Updating predifined messages
+        // Updating displayed predifined messages
         pm = document.getElementsByClassName("predefinedMessage");
 
         // Getting message's x1 and x2 position on screen
@@ -104,9 +105,11 @@ Template.groupPage.events({
 
         Meteor.call("group.update", newName, groupId);
     },
+    // Reroute to the menu page upon clicking the go back div
     'click #goBack' : function(e){
         FlowRouter.go('menu');
     }, 
+    // Making sure that the admin has access to the group settings
     'click #groupSettings' : function(e){
         let groupId = localStorage.getItem("groupId");
         let adminGroup = groupCollection.find({'_id' : groupId}).fetch()[0].admin;
@@ -117,11 +120,11 @@ Template.groupPage.events({
             alert('You are not autorised to change the group settings')
         }
     },
+    // fetching messages
     'click #typeMessage': function(e) {
         let messageBox = document.getElementById("messageBox");
         let messages = document.getElementById("messages");
-
-        // Displaying the message box
+        // Displaying the message boxes
         messageBox.style.display = "flex";
         messages.setAttribute("class", "blurred");
     },
@@ -129,5 +132,6 @@ Template.groupPage.events({
         let mb = document.getElementById("messageBox");
         mb.style.display = "none";
         e.target.removeAttribute("class", "blurred");
+        console.log('anzthing')
     }
 });
