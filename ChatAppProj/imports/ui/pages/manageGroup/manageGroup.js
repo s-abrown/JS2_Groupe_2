@@ -50,7 +50,7 @@ Template.groupTypesT.helpers({
 
             // If the group is the one selected, add class
             if(groupTypes[g]){
-                let className = 'selectedGroup';
+                className = 'selectedGroup';
             }
 
             // Creates group object
