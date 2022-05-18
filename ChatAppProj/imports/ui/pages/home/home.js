@@ -9,6 +9,7 @@ Template.home.events({
         let username = document.getElementById("userID").value;
         let password = document.getElementById("password").value;
 
+        // Error pop up if info wrong, else reroute to home page
         Meteor.loginWithPassword(username, password, function(err, res){
             if (err) {
                 Swal.fire(
@@ -23,6 +24,7 @@ Template.home.events({
     }
 });
 
+// Rerouting to the menu if the user is already connected
 Template.rerouteToMenu.onRendered(function(){
     FlowRouter.go("menu");
 });

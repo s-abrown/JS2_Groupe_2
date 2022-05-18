@@ -131,8 +131,6 @@ a, a:active, a:hover {
     overflow-y : scroll;
     box-sizing : border-box;
     color : #fff;
-    display: flex;
-    flex-direction: column-reverse;
 }
 
 #typeMessage {

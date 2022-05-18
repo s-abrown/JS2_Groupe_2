@@ -23,7 +23,7 @@ Template.groupPage.onRendered(function() {
     }); 
 })
 
-// Creating the helper for the predefined messages (predefined & custom)
+// Creating the helper for the predefined and costum messages
 Template.messageBox.helpers({
     predefinedMessages(){
         let groupId = localStorage.getItem("groupId");
@@ -39,17 +39,15 @@ Template.messageBox.helpers({
 // Creating the helper to feed data to the group template 
 Template.groupMessages.helpers({
     sentMessages(){
-        // Going for the desperate way -> WORKS !
         let groupId = localStorage.getItem("groupId");
         return sentMessagesCollection.find({group: groupId}).fetch();
     },
 });
 
-// Creating the helper to get the group name -> DOESN'T WORK !
+// Creating the helper to get the group name
 Template.groupName.helpers({
     name(){
         let groupId = localStorage.getItem("groupId");
-        // console.log(groupId)
         let returnedGroupName = groupCollection.findOne({"_id": groupId}).name;
         return returnedGroupName
     }
@@ -142,6 +140,5 @@ Template.groupPage.events({
         let mb = document.getElementById("messageBox");
         mb.style.display = "none";
         e.target.removeAttribute("class", "blurred");
-        console.log('anzthing')
     }
 });
