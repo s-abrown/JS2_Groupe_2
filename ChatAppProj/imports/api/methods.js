@@ -95,6 +95,8 @@ Meteor.methods({
             let userObj = {_id : userId, username : specificUsername};
             table.push(userObj)
         }
+        console.log("hello world")
+
         return table;
     }
 })

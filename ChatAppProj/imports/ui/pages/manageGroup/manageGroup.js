@@ -22,11 +22,15 @@ Template.manageGroup.helpers({
     // For upadting the users in the group member list
     getUsers(){
         let groupId = localStorage.getItem("groupId");
-        let table = Meteor.call('membersDisplay', groupId, (e,r) => {
-            return r;
-        });
-        console.log('This is:' + table)
-        return table
+
+        let table = '';
+
+        Meteor.call('membersDisplay', groupId, (e,r) => {
+            console.log(e, r)
+        })
+
+        // console.log('This is:')
+        // return table
     },
 });
 
@@ -99,6 +103,7 @@ Template.manageGroup.events({
         //Meteor.call('group.category', groupId, groupType)
         Meteor.call('group.category', groupId, groupType);
     },
+    // Reroute to gruop page upon clicking the back div
     'click #goBack' : function (e) {
         FlowRouter.go('group');
     },

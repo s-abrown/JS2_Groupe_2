@@ -3,7 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import './home.html';
 
-// Code for logging in
+// Logging in:
 Template.home.events({
     'click #button'(e) {
         let username = document.getElementById("userID").value;

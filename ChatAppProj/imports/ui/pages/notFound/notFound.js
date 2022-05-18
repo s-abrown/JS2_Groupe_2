@@ -6,7 +6,7 @@ import './notFound.html'
 
 // no relevant collection not relevant subscriptions no relevant helpers for this page. 
 
-// Listener/events:
+// Event:
 Template.notFound.events({
     //sends you back to the home page upon clicking the "back" div
     'click .text' :
