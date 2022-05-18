@@ -13,6 +13,16 @@ if (Meteor.isClient){
     Meteor.subscribe('publishGroups');
 }
 
+// Scrolling down to the newest message when the Template is rendered 
+Template.groupPage.onRendered(function() {
+    this.autorun(function() {
+        Meteor.setTimeout(function() {
+            const s = document.getElementById('messages');
+            s.scrollTop = s.scrollHeight
+        }, 1);
+    }); 
+})
+
 // Creating the helper for the predefined messages (predefined & custom)
 Template.messageBox.helpers({
     predefinedMessages(){
