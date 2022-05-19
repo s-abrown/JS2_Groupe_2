@@ -184,27 +184,23 @@ a, a:active, a:hover {
     z-index : 3;
 }
 
-#messageBox div {
-    width : 100%;
-    margin : 0.5em 0 0.5em 0;
-    padding : 1em;
-    box-sizing : border-box;
-    border-radius : 1em;
-}
-
 .predefinedMessage {
-    word-break: break-all;
-    color : #fff;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
+    margin: 0.5em 0;
+    width : 100%;
     cursor : pointer;
     background : linear-gradient(
         to right, 
         rgba( 255, 0, 0, 0.75 ) 0%, rgba( 255, 0, 0, 0.75 ) 33.332%,
         rgba( 255, 128, 0, 0.75 ) 33.333%, rgba( 255, 128, 0, 0.75 ) 66.665%,
         rgba( 0, 255, 0, 0.75 ) 66.666%,rgba( 0, 255, 0, 0.75 ) 100%
-    )
+    );
+    padding: 1em;
+    border-radius : 0.5em;
+    box-sizing : border-box;
+    white-space: nowrap;
+    word-break: break-all;
+    color : #fff;
+    text-overflow: ellipsis;
 }
 
 /* Colors by priority */

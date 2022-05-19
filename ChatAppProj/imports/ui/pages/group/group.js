@@ -136,6 +136,7 @@ Template.groupPage.events({
         messageBox.style.display = "flex";
         messages.setAttribute("class", "blurred");
     },
+    // if we toggle this part the message problem (no css anymore) is solved
     'click #messages': function(e) {
         let mb = document.getElementById("messageBox");
         mb.style.display = "none";
