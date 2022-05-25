@@ -15,12 +15,10 @@ if (Meteor.isClient){
 
 // Scrolling down to the newest message when the Template is rendered 
 Template.groupPage.onRendered(function() {
-    this.autorun(function() {
-        Meteor.setTimeout(function() {
-            const s = document.getElementById('messages');
-            s.scrollTop = s.scrollHeight
-        }, 1);
-    }); 
+    Meteor.setTimeout(function() {
+        const s = document.getElementById('messages');
+        s.scrollTop = s.scrollHeight;
+    }, 100);
 })
 
 // Creating the helper for the predefined and costum messages
@@ -67,7 +65,6 @@ Template.messageBox.events({
         let pm = document.getElementsByClassName("predefinedMessage");
         let mouse = [];
         let priority = null;
-    
 
         // Tracking mouse position (used later in code)
         document.addEventListener("mousemove", e => {
@@ -102,6 +99,12 @@ Template.messageBox.events({
         let groupId = localStorage.getItem("groupId");
         let user = Meteor.users.findOne({'_id' : Meteor.userId()}).username;
         Meteor.call("sentMessages.insert", e.target.innerText, priority, groupId, user);
+
+        // Waiting a bit to scroll down automatically so that when we send a message it appears at the bottom
+        Meteor.setTimeout(function() {
+            const s = document.getElementById('messages');
+            s.scrollTop = s.scrollHeight;
+        }, 100);
     },
 });
  
@@ -125,7 +128,7 @@ Template.groupPage.events({
         if (adminGroup === userId){
             FlowRouter.go('manageGroup');
         } else {
-            alert('You are not autorised to change the group settings')
+            alert('You are not authorised to change the group settings.');
         }
     },
     // fetching messages
