@@ -107,7 +107,7 @@ Meteor.publish('sentMessages', function publishSentMessages(){
     return sentMessagesCollection.find({});
 });
 
-// Publish groups --> only the ones in which the user is
+// Publish groups --> only the ones in which the user is in
 Meteor.publish('publishGroups', function f(){
     return groupCollection.find({});
 });

@@ -23,14 +23,16 @@ Meteor.methods({
             group: groupId
         })
     },
-    'group.createGroup'(username){
+    'group.createGroup'(id){
         // adding check to make sure usernames are strings
-        check(username, String);
+        check(id, String);
+
+        let username = Meteor.users.findOne({'_id':id}).username;
 
         groupCollection.insert({
             name : 'Group name',
-            admin : username, 
-            users: [username],
+            admin : id, 
+            users: [{_id: id, username: username}],
             category: 'other'
         })
     },
@@ -82,7 +84,7 @@ Meteor.methods({
 
         if (thingToCheck){
             groupCollection.update({_id: groupId}, {
-                $push:{users : thingToCheck._id}
+                $push:{users : {_id:thingToCheck._id, username: username}}
             })
         }
     },
@@ -95,7 +97,6 @@ Meteor.methods({
             let userObj = {_id : userId, username : specificUsername};
             table.push(userObj)
         }
-        console.log("hello world")
 
         return table;
     }

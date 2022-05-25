@@ -184,6 +184,43 @@ a, a:active, a:hover {
     z-index : 3;
 }
 
+#messageBox div {
+    width : 100%;
+    margin : 0.5em 0 0.5em 0;
+    padding : 1em;
+    box-sizing : border-box;
+    border-radius : 1em;
+}
+
+.predefinedMessage {
+    word-break: break-all;
+    color : #fff;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor : pointer;
+    background : linear-gradient(
+        to right, 
+        rgba( 255, 0, 0, 0.75 ) 0%, rgba( 255, 0, 0, 0.75 ) 33.332%,
+        rgba( 255, 128, 0, 0.75 ) 33.333%, rgba( 255, 128, 0, 0.75 ) 66.665%,
+        rgba( 0, 255, 0, 0.75 ) 66.666%,rgba( 0, 255, 0, 0.75 ) 100%
+    )
+}
+
+/* #messageBox {
+    display : none;
+    flex-direction : column;
+    width : 50%;
+    height : 60%;
+    position : fixed;
+    top : 20%;
+    left : 25%;
+    background : #999;
+    overflow-y : scroll;
+    padding : 1em;
+    z-index : 3;
+}
+
 .predefinedMessage {
     margin: 0.5em 0;
     width : 100%;
@@ -201,7 +238,7 @@ a, a:active, a:hover {
     word-break: break-all;
     color : #fff;
     text-overflow: ellipsis;
-}
+} */
 
 /* Colors by priority */
 .priority_low {
@@ -260,6 +297,7 @@ a, a:active, a:hover {
     background-color: #99bbff;
     margin: 0.5em 0;
     padding: 0.5em 1em;
+    cursor: pointer;
 }
 
 /* Manage Group Settings */
@@ -399,9 +437,16 @@ a, a:active, a:hover {
     color: #fff;
 }
 
-.memberContainer div:nth-child(1),
+.memberContainer div:nth-child(1){
+    width: 100%;
+}
+
 .message_list_container div:nth-child(1) {
     width: 90%;
+}
+
+.memberContainer div:nth-child(1),
+.message_list_container div:nth-child(1) {
     margin-right: 2%;
     background-color: #99bbff;
     border-radius: 1em;
@@ -413,15 +458,23 @@ a, a:active, a:hover {
     white-space: nowrap;
 }
 
-.memberContainer div:nth-child(2),
 .message_list_container div:nth-child(2) {
     width: 10%;
-    background: red;
+    background: pink;
     text-align: center;
     font-weight: 600;
     border-radius: 0.5em;
     padding: 0.5em;
     margin: 0.3em;
+    cursor: pointer;
+}
+
+.message_list_container div:nth-child(2):hover {
+    background-color: hotpink;
+}
+
+#member_list .memberContainer:nth-child(1) div{
+    background-color: pink;
 }
 
 /* Message Editing Field */

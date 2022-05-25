@@ -15,8 +15,8 @@ if (Meteor.isClient){
 // Creating the helper to feed data to the group template
 Template.allGroups.helpers({
     group(){
-        let user = Meteor.users.findOne({'_id' : Meteor.userId()})._id;
-        return groupCollection.find({"users":{$in:[user]}}).fetch();
+        // To return the group members in a group:
+        return groupCollection.find({"users._id": Meteor.userId()}).fetch();
     },
 });
 // Helper to feed in the logged in user name and log out option
@@ -29,9 +29,7 @@ Template.displayUsername.helpers({
 // Event: upon clicking on + a new group is created. 
 Template.menu.events({
     'click #newGroup' : function (e){
-        let user = Meteor.users.findOne({'_id' : Meteor.userId()})._id;
-        check(user, String);
-        Meteor.call("group.createGroup", user);
+        Meteor.call("group.createGroup", Meteor.userId());
     },
     'click .groups' : function (e){
         let id = e.target.getAttribute("id");

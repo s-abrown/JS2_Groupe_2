@@ -140,6 +140,6 @@ Template.groupPage.events({
     'click #messages': function(e) {
         let mb = document.getElementById("messageBox");
         mb.style.display = "none";
-        e.target.removeAttribute("class", "blurred");
+        document.getElementById("messages").removeAttribute("class", "blurred");
     }
 });

@@ -11,6 +11,22 @@ import './manageGroup.html';
 if (Meteor.isClient){
     Meteor.subscribe('customMessages');
 }
+/* 
+Template.manageGroup.onCreated(function () {
+    this.users = new ReactiveDict();
+});
+
+Template.manageGroup.onRendered(function () {
+    let groupId = localStorage.getItem("groupId");
+
+        Meteor.call('membersDisplay', groupId, (e,r) => {
+            if (e) {
+
+            } else {
+                this.users = r;
+            }
+        })
+}); */
 
 // Creating helpers for custom messages and for group users:
 Template.manageGroup.helpers({
@@ -21,17 +37,16 @@ Template.manageGroup.helpers({
     },
     // For upadting the users in the group member list
     getUsers(){
+        //return Template.instance().users.get()
+        // Afficher les membres du groupe. Filtrer par groupId:
         let groupId = localStorage.getItem("groupId");
+        let users = groupCollection.findOne({"_id": groupId}).users;
 
-        let table = '';
-
-        Meteor.call('membersDisplay', groupId, (e,r) => {
-            console.log(e, r)
-        })
+        return users;
 
         // console.log('This is:')
         // return table
-    },
+    }
 });
 
 // Creating helpers for the group type:
@@ -90,11 +105,6 @@ Template.manageGroup.events({
     'click .message_x_button' : function (e) {
         let id = e.target.parentNode.getAttribute("id");
         Meteor.call('customMessages.delete', id);
-    },
-    // Deletes a member from the member list
-    'click .member_x_button' : function (e) {
-        let id = e.target.parentNode.getAttribute("id");
-        Meteor.call('users.delete', id);
     },
     // Select a group type which will affect the predefined message list displayed
     'click .group_type' : function (e) {
