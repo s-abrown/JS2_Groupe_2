@@ -13,6 +13,7 @@
                 <div id="group_title">
                     <div class="label">Group type</div>
                     <div id="group_type_container">
+                        <!-- Display the various types of groups you can choose from -->
                         {{> groupTypesT}}
                     </div>
                 </div>
@@ -30,6 +31,7 @@
                 </div>
                 <!-- Member List -->
                 <div id="member_list">
+                    <!-- Display the group members -->
                 {{#each getUsers}}
                     {{> members}}
                 {{/each}}
