@@ -62,7 +62,8 @@ Innovations/Différences : système de messages préenregistrés.
 # Technologies utilisées
 Meteor Blaze 
 
-# Meta : Commencer à penser à la gestion du projet et à la répartition des tâches (tâches par composants et non par domaines)
+# Gestion du projet
+Le projet était codé ensemble en utilisant liveshare dépuis un seul ordinateur pour éviter les conflits lors du codage. Les individus du groupe ont tous participé à la création des pages du HTML, au CSS, au JS. 
 
 # Description du MVP
 Tous sauf le système des priorités/notifications. 
