@@ -11,22 +11,6 @@ import './manageGroup.html';
 if (Meteor.isClient){
     Meteor.subscribe('customMessages');
 }
-/* 
-Template.manageGroup.onCreated(function () {
-    this.users = new ReactiveDict();
-});
-
-Template.manageGroup.onRendered(function () {
-    let groupId = localStorage.getItem("groupId");
-
-        Meteor.call('membersDisplay', groupId, (e,r) => {
-            if (e) {
-
-            } else {
-                this.users = r;
-            }
-        })
-}); */
 
 // Creating helpers for custom messages and for group users:
 Template.manageGroup.helpers({
@@ -37,15 +21,11 @@ Template.manageGroup.helpers({
     },
     // For upadting the users in the group member list
     getUsers(){
-        //return Template.instance().users.get()
         // Afficher les membres du groupe. Filtrer par groupId:
         let groupId = localStorage.getItem("groupId");
         let users = groupCollection.findOne({"_id": groupId}).users;
 
         return users;
-
-        // console.log('This is:')
-        // return table
     }
 });
 
@@ -125,4 +105,3 @@ Template.manageGroup.events({
         Meteor.call('user.add', userName, groupId);
     },
 });
-

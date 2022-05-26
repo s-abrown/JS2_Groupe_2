@@ -184,61 +184,26 @@ a, a:active, a:hover {
     z-index : 3;
 }
 
-#messageBox div {
+#messageBox .predefinedMessage {
     width : 100%;
+    height: auto;
     margin : 0.5em 0 0.5em 0;
-    padding : 1em;
+    line-height: 3em;
     box-sizing : border-box;
-    border-radius : 1em;
-}
-
-.predefinedMessage {
+    padding: 0 1em;
     word-break: break-all;
     color : #fff;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-    cursor : pointer;
-    background : linear-gradient(
-        to right, 
-        rgba( 255, 0, 0, 0.75 ) 0%, rgba( 255, 0, 0, 0.75 ) 33.332%,
-        rgba( 255, 128, 0, 0.75 ) 33.333%, rgba( 255, 128, 0, 0.75 ) 66.665%,
-        rgba( 0, 255, 0, 0.75 ) 66.666%,rgba( 0, 255, 0, 0.75 ) 100%
-    )
-}
-
-/* #messageBox {
-    display : none;
-    flex-direction : column;
-    width : 50%;
-    height : 60%;
-    position : fixed;
-    top : 20%;
-    left : 25%;
-    background : #999;
-    overflow-y : scroll;
-    padding : 1em;
-    z-index : 3;
-}
-
-.predefinedMessage {
-    margin: 0.5em 0;
-    width : 100%;
-    cursor : pointer;
     background : linear-gradient(
         to right, 
         rgba( 255, 0, 0, 0.75 ) 0%, rgba( 255, 0, 0, 0.75 ) 33.332%,
         rgba( 255, 128, 0, 0.75 ) 33.333%, rgba( 255, 128, 0, 0.75 ) 66.665%,
         rgba( 0, 255, 0, 0.75 ) 66.666%,rgba( 0, 255, 0, 0.75 ) 100%
     );
-    padding: 1em;
-    border-radius : 0.5em;
-    box-sizing : border-box;
-    white-space: nowrap;
-    word-break: break-all;
-    color : #fff;
+    border-radius: .5em;
     text-overflow: ellipsis;
-} */
+    white-space: nowrap;
+    cursor : pointer;
+}
 
 /* Colors by priority */
 .priority_low {
