@@ -1,4 +1,5 @@
 <template name="menu">
+    <!-- Checking if user is logged in or not: -->
     {{#unless LoggingIn }}
         {{#if currentUser}}
             <div id="menu">
@@ -11,12 +12,14 @@
                 </div>
             </div>
         {{else}}
+        <!-- If not logged in, reroute to 404 page -->
             {{> rr2nf_03}}
         {{/if}}
     {{/unless}}
 </template>
 
 <template name="allGroups">
+    <!-- Display groups: -->
     {{#each group}}
         {{> oneGroup}}
     {{/each}}

@@ -7,21 +7,21 @@ import { customMessagesCollection, groupCollection } from '/imports/db/collectio
 
 import './manageGroup.html';
 
-// Custom messages subscription:
+// Custom messages subscription so that users can see displayed custom messages:
 if (Meteor.isClient){
     Meteor.subscribe('customMessages');
 }
 
-// Creating helpers for custom messages and for group users:
+//  HELPERS to feed data to display custom messages and group memners:
 Template.manageGroup.helpers({
-    // For custom messages
+    // For custom messages:
     customMessages(){
         let groupId = localStorage.getItem("groupId");
         return customMessagesCollection.find({group: groupId}).fetch();
     },
     // For upadting the users in the group member list
     getUsers(){
-        // Afficher les membres du groupe. Filtrer par groupId:
+        // Display group members, filtered by group ID:
         let groupId = localStorage.getItem("groupId");
         let users = groupCollection.findOne({"_id": groupId}).users;
 
@@ -68,9 +68,10 @@ Template.rr2nf_02.onRendered(function(){
     FlowRouter.go("notFound");
 });
 
-// Listener/event: 
+
+// EVENTS: 
 Template.manageGroup.events({
-    // Upon submitting a new message it is displayed in the message list
+    // Upon submitting a new message, message is displayed in the message list:
     'click #button_add_message' : function (e) {
         let customMessage = document.getElementById("input_add_message").value;
         let groupId = localStorage.getItem("groupId");
@@ -81,7 +82,7 @@ Template.manageGroup.events({
         
         Meteor.call('customMessages.insert', customMessage, groupId);
     },  
-    // Deletes a custom message
+    // Delete a custom message
     'click .message_x_button' : function (e) {
         let id = e.target.parentNode.getAttribute("id");
         Meteor.call('customMessages.delete', id);
@@ -90,18 +91,16 @@ Template.manageGroup.events({
     'click .group_type' : function (e) {
         let groupType = e.target.getAttribute("id");
         let groupId = localStorage.getItem("groupId");
-        //Meteor.call('group.category', groupId, groupType)
         Meteor.call('group.category', groupId, groupType);
     },
-    // Reroute to gruop page upon clicking the back div
+    // Reroute to group page upon clicking the "back" div:
     'click #goBack' : function (e) {
         FlowRouter.go('group');
     },
-    // adding members to group list 
+    // adding members to group list:
     'click #button_add_member' : function (e) {
         let userName = document.getElementById("input_add_member").value;
         let groupId = localStorage.getItem("groupId");
-        //Meteor.call('group.category', groupId, groupType)
         Meteor.call('user.add', userName, groupId);
     },
 });

@@ -16,10 +16,10 @@ Meteor.methods({
         date = ("00" + date.getDate()).substr(-2,2) + "." + ("00"+(Number(date.getMonth())+1)).substr(-2,2) + "." + date.getFullYear() + " " + ("00" + date.getHours()).substr(-2,2) + ":" + ("00" + date.getMinutes()).substr(-2,2);
 
         sentMessagesCollection.insert({
-            author: username,  // needs modification
+            author: username,
             date: date,
-            message : m, // needs security improvements (later)
-            priority: priority, // now it's dyinamic
+            message : m,
+            priority: priority,
             group: groupId
         })
     },
@@ -49,7 +49,7 @@ Meteor.methods({
     'customMessages.delete'(id){
         // adding checks to make sure messages are strings
         check(id, String);
-        customMessagesCollection.remove({_id:id})
+        customMessagesCollection.remove({_id:id});
     },
     'group.update'(newName, groupId){
         // adding checks to make sure group names are strings
@@ -58,7 +58,7 @@ Meteor.methods({
         // Update name of group
         groupCollection.update({_id: groupId}, {
             $set:{name: newName}
-        })
+        });
     },
     'group.category'(groupId, groupType){
         // adding checks to make sure group categories are strings
@@ -66,7 +66,7 @@ Meteor.methods({
         check(groupType, String);
         groupCollection.update({_id: groupId}, {
             $set:{category: groupType}
-        })
+        });
     },
     'user.create'(username, password){
         // adding checks to make sure this stuff are strings
@@ -75,7 +75,7 @@ Meteor.methods({
         return Accounts.createUser({
             username: username,
             password: password,
-        })
+        });
     },
     'user.add'(username, groupId){
         check(username, String);
@@ -85,7 +85,7 @@ Meteor.methods({
         if (thingToCheck){
             groupCollection.update({_id: groupId}, {
                 $push:{users : {_id:thingToCheck._id, username: username}}
-            })
+            });
         }
     },
     'membersDisplay'(groupId){
@@ -101,4 +101,3 @@ Meteor.methods({
         return table;
     }
 })
-

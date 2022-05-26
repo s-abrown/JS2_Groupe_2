@@ -7,26 +7,27 @@ import { groupCollection } from '/imports/db/collections';
 
 import './menu.html';
 
-// Subscribe the client to the collection for predefined messages
+// Subscribe the client to the collection for predefined messages to allow them to view messages: 
 if (Meteor.isClient){
     Meteor.subscribe('publishGroups');
 }
 
-// Creating the helper to feed data to the group template
+// HELPER to feed data to the group template: 
 Template.allGroups.helpers({
     group(){
         // To return the group members in a group:
         return groupCollection.find({"users._id": Meteor.userId()}).fetch();
     },
 });
-// Helper to feed in the logged in user name and log out option
+
+//  HELPER to feed in the logged in user name and log out option
 Template.displayUsername.helpers({
     username(){
         return Meteor.users.findOne({'_id' : Meteor.userId()}).username;
     }
 })
 
-// Event: upon clicking on + a new group is created. 
+// EVENT: upon clicking on + div, a new group is created: 
 Template.menu.events({
     'click #newGroup' : function (e){
         Meteor.call("group.createGroup", Meteor.userId());
@@ -46,7 +47,7 @@ Template.menu.events({
     }
 });
 
-// Reroute to page 404 if not logged in
+// Reroute to page 404 if not logged in: 
 Template.rr2nf_03.onRendered(function(){
     FlowRouter.go("notFound");
 });

@@ -5,10 +5,12 @@ import { Meteor } from 'meteor/meteor';
 
 import './signUp.html';
 
+//EVENT: 
 Template.signUp.events({
     'click #button' : function (e){
         let username = document.getElementById("userID").value;
         let password = document.getElementById("password").value;
+        // Checks to make sure usernames and passwords are strings: 
         check(username, String);
         check(password, String);
 
