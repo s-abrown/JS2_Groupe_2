@@ -3,13 +3,13 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import './home.html';
 
-// Logging in:
+// EVENT to login - enter username and password:
 Template.home.events({
     'click #button'(e) {
         let username = document.getElementById("userID").value;
         let password = document.getElementById("password").value;
 
-        // Error pop up if info wrong, else reroute to home page
+        // ALERT using the fire script we imported in the HTML page: 
         Meteor.loginWithPassword(username, password, function(err, res){
             if (err) {
                 Swal.fire(
@@ -24,7 +24,7 @@ Template.home.events({
     }
 });
 
-// Rerouting to the menu if the user is already connected
+// Rerouting to the menu if the user is already connected: 
 Template.rerouteToMenu.onRendered(function(){
     FlowRouter.go("menu");
 });

@@ -1,4 +1,5 @@
 <template name="groupPage">
+    <!-- Ensuring that you can only see this page if you're logged in with the unless/if statement-->
     {{#unless loggingIn}}
         {{#if currentUser}}
             <div id="groupBox">
@@ -22,7 +23,9 @@
                     {{> messageBox}}
                 </div>
             </div>
+        <!-- If you're not logged in, you're sent to the 404 page-->
         {{else}}
+        <!-- This is the 404 page reroute-->
             {{> rr2nf_01}}
         {{/if}}
     {{/unless}}
@@ -31,20 +34,22 @@
 <!--FOR MESSAGE POP UP (predefined) -->
 <!-- Template for predefined messages -->
 <template name="messageBox">
+    <!-- Display all the predefined messages on the page -->
     {{#each predefinedMessages}}
         {{> predefinedMessage}}
     {{/each}}
+    <!-- Display all the custom messages on the page -->
     {{#each customMessages}}
         {{> customMessage}}
     {{/each}}
 </template>
 
-<!-- Template for formatting each predefined message -->
+<!-- Template for formatting all the predefined message -->
 <template name="predefinedMessage">
     <div class="predefinedMessage" id="{{_id}}">{{message}}</div>
 </template>
 
-<!-- Template for formatting each custom message -->
+<!-- Template for formatting all the custom message -->
 <template name="customMessage">
     <div class="predefinedMessage" id="{{_id}}">{{message}}</div>
 </template>
@@ -57,9 +62,12 @@
     {{/each}}
 </template>
 
+<!-- To display messages: -->
 <template name="displayMessage">
     <div class="message {{priority}}">
+        <!-- Display the author of the message -->
         <div class="author">{{author}} ({{date}})</div>
+        <!-- Display the message itself -->
         <div class="body">{{message}}</div>
     </div>
 </template>
