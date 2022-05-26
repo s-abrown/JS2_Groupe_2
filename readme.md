@@ -48,7 +48,7 @@ Prototype de l'application avant le début du développement
 
 # Interface
 ## Sign up et Login
-![login](readmeImages/login.png) ![signUp](readmeImages/signUp.png)
+![login](readmeImages/signUp_Login.png)
 - Si l'utilisateur n'est pas connecté, il peut soit cliquer sur le lien "Sign Up" situé sous le bouton "Login" pour s'inscrire, soit se logger. Sinon, s'il est déjà connecté, il sera automatiquement redirigé sur la page présentant les groupes auxquels il appartient.
 ![homePage](readmeImages/homePage.png)
 - Sur la _home page_, l'utilisateur pourra accéder aux groupes dont il fait partie. L'utilisateur peut se déconnecter en cliquant sur le message de bienvenue qui se trouve dans le coin supérieur gauche. A droite, le + permet de créer un nouveau groupe (dont l'utilisateur actuel est l'admin) et qui sera nommé "Group name".
