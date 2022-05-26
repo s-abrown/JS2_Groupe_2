@@ -8,7 +8,6 @@ Ce projet est développé dans le cadre du cours "Programmation pour Internet II
 - Vache
 - Antonin 
 - Tessa
-- Norrick
 
 # Description et principe
 Ce projet consiste en une messagerie qui a pour but principaux d'être facile à utiliser, rapide, jolie et polyvalente.
@@ -28,7 +27,7 @@ Lorsqu'un message avec une priorité maximale est envoyé, une notification est 
 - Possibilité de créer des groupes et y ajouter des messages personnalisés
 - etc.
 
-# Fonctionnalités planifiées/implémentées (plus dans le détail)
+# Fonctionnalités planifiées/implémentées (dans le détail)
 - Phase création de compte
 - Phase log in
 - Phase de création de groupes
@@ -40,11 +39,11 @@ Lorsqu'un message avec une priorité maximale est envoyé, une notification est 
 - Naviguation entre les groupes
 - Notification des messages
 - Base de données (compte, liste de quick-messages, groupes)
-- Logique intuitive et simple à mettre en main
+- Logique intuitive et simple à prendre en main
 
 # Illustrations et images
 ## Concept UI/UX, wireframe
-![wireframe](wireFrame.jpeg)
+![wireframe](readmeImages/wireFrame.jpeg)
 - Un système intuitif et familier
 
 # Analyse concurentielle, état de l'art
@@ -55,20 +54,23 @@ En ce qui concerne la hiérarchisation des messages, de nombreuses applications 
 Fonctionnalités déjà utilisées par d'autres apps : création d'un compte, création de groupes avec un administrateur, priorité des messages par couleur. 
 Innovations/Différences : système de messages préenregistrés.
 
-# Installation
-(à faire)
-
-# License
-(à définir plus tard)
-
 # Analyse de faisabilité
-> Très bonne question - devrait être faisable 
+> Faisable
     
 # Analyse fonctionelle
 
 # Technologies utilisées
+Meteor Blaze 
 
 # Meta : Commencer à penser à la gestion du projet et à la répartition des tâches (tâches par composants et non par domaines)
 
 # Description du MVP
 Tous sauf le système des priorités/notifications. 
+
+# Screenshots
+![login](readmeImages/login.png)
+![signUp](readmeImages/signUp.png)
+![homePage](readmeImages/homePage.png)
+![group](readmeImages/group.png)
+![predefinedMessages](readmeImages/predefinedMessages.png)
+![settings](readmeImages/settings.png)
