@@ -1,10 +1,9 @@
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
-import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 
 import './notFound.html'
 
-// no relevant collection not relevant subscriptions no relevant helpers for this page. 
+// No relevant collection not relevant subscriptions no relevant helpers for this page. 
 
 // EVENT:
 Template.notFound.events({
@@ -13,4 +12,4 @@ Template.notFound.events({
     function (e) {
         FlowRouter.go('home');
     }
-})
+});

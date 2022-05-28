@@ -1,11 +1,10 @@
-import { Accounts } from 'meteor/accounts-base';
 import { check } from 'meteor/check';
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import { Meteor } from 'meteor/meteor';
 
 import './signUp.html';
 
-//EVENT: 
+//Event
 Template.signUp.events({
     'click #button' : function (e){
         let username = document.getElementById("userID").value;

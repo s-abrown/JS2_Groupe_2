@@ -25,7 +25,7 @@ Template.displayUsername.helpers({
     username(){
         return Meteor.users.findOne({'_id' : Meteor.userId()}).username;
     }
-})
+});
 
 // EVENT: upon clicking on + div, a new group is created: 
 Template.menu.events({

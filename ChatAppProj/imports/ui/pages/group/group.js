@@ -20,7 +20,7 @@ Template.groupPage.onRendered(function() {
         const s = document.getElementById('messages');
         s.scrollTop = s.scrollHeight;
     }, 100);
-})
+});
 
 // HELPERS to feed the wanted data into the PREDEFINED messages and the CUSTOM messages: 
 Template.messageBox.helpers({

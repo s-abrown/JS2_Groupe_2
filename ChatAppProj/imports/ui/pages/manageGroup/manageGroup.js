@@ -61,13 +61,12 @@ Template.groupTypesT.helpers({
 
         return allGroups
     }
-})
+});
 
 // Reroute function to 404 page. 
 Template.rr2nf_02.onRendered(function(){
     FlowRouter.go("notFound");
 });
-
 
 // EVENTS: 
 Template.manageGroup.events({
@@ -75,12 +74,9 @@ Template.manageGroup.events({
     'click #button_add_message' : function (e) {
         let customMessage = document.getElementById("input_add_message").value;
         let groupId = localStorage.getItem("groupId");
-        
         check(customMessage, String);
-
-        document.getElementById("input_add_message").value = '';
-        
         Meteor.call('customMessages.insert', customMessage, groupId);
+        document.getElementById("input_add_message").value = '';
     },  
     // Delete a custom message
     'click .message_x_button' : function (e) {
@@ -102,5 +98,6 @@ Template.manageGroup.events({
         let userName = document.getElementById("input_add_member").value;
         let groupId = localStorage.getItem("groupId");
         Meteor.call('user.add', userName, groupId);
+        document.getElementById("input_add_member").value = '';
     },
 });

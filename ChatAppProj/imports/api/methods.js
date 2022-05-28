@@ -21,7 +21,7 @@ Meteor.methods({
             message : m,
             priority: priority,
             group: groupId
-        })
+        });
     },
     'group.createGroup'(id){
         // adding check to make sure usernames are strings
@@ -34,7 +34,7 @@ Meteor.methods({
             admin : id, 
             users: [{_id: id, username: username}],
             category: 'other'
-        })
+        });
     },
     'customMessages.insert'(m, gid){
         // adding checks to make sure messages are strings
@@ -44,7 +44,7 @@ Meteor.methods({
         customMessagesCollection.insert({
             message : m,
             group : gid,
-        })
+        });
     },
     'customMessages.delete'(id){
         // adding checks to make sure messages are strings
