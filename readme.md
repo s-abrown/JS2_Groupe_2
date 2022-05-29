@@ -68,9 +68,6 @@ En ce qui concerne la hiérarchisation des messages, de nombreuses applications 
 Fonctionnalités déjà utilisées par d'autres apps : création d'un compte, création de groupes avec un administrateur, priorité des messages par couleur. 
 Innovations/Différences : système de messages préenregistrés.
 
-# Analyse de faisabilité
-Faisable
-
 # Technologies utilisées
 HTML, CSS, JS, Meteor Blaze, Visual Studio Code
 
