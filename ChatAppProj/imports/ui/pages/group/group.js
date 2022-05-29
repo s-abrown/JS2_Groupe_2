@@ -15,19 +15,27 @@ if (Meteor.isClient){
 
 // To automatically scroll down to the last message upon rendering the page:  
 Template.groupPage.onRendered(function() {
-    // Timeout on the rendered page:
+    // The Timeout was set to a 100 to allow for the data to be fed to the page before rendering
     Meteor.setTimeout(function() {
         const s = document.getElementById('messages');
         s.scrollTop = s.scrollHeight;
     }, 100);
 });
 
-// HELPERS to feed the wanted data into the PREDEFINED messages and the CUSTOM messages: 
+// Reroute to 404 page if user is not logged in:
+Template.rr2nf_01.onRendered(function(){
+    FlowRouter.go("notFound");
+});
+
+// HELPERS 
+// To feed the wanted data into the PREDEFINED messages and the CUSTOM messages: 
 Template.messageBox.helpers({
     // For predefined messages: 
     predefinedMessages(){
         let groupId = localStorage.getItem("groupId");
+        // In the groupCollection we first fin the groupId with the right id and then look for it's type
         let categoryGroup = groupCollection.findOne({'_id' : groupId}).category;
+        // Return the predifined messages that correspond to the specific group type
         return predefinedMessagesCollection.find({category: categoryGroup}).fetch({});
     },
     // For custom messages: 
@@ -37,19 +45,18 @@ Template.messageBox.helpers({
     },
 });
 
-// Creating the helper to feed data to the group template 
+// Creating the helper to feed data to the groupMessages template (sent messages):
 Template.groupMessages.helpers({
-    sentMessages(){
-        // Fetch and display the group name: 
+    sentMessages(){ 
         let groupId = localStorage.getItem("groupId");
+        // All the messages sent in the group are fetched here and displayed according to the template
         return sentMessagesCollection.find({group: groupId}).fetch();
     },
 });
 
-// HELPER to feed the wanted data to display the name of a group: 
+// To feed the wanted data to display the name of a group: 
 Template.groupName.helpers({
     name(){
-        // fetching the group name from the local storage on Meteor
         let groupId = localStorage.getItem("groupId");
         // Display the group name
         let returnedGroupName = groupCollection.findOne({"_id": groupId}).name;
@@ -57,12 +64,10 @@ Template.groupName.helpers({
     }
 });
 
-// EVENT to reroute to 404 page if not logged in:
-Template.rr2nf_01.onRendered(function(){
-    FlowRouter.go("notFound");
-});
 
-// EVENT -  upon clicking on a message it gets sent and is displayed onscreen. /!\ This includes a mouse tracking in order to determine which PRIORITY users choose for each message:
+
+// EVENTS
+// Upon clicking on a message it gets sent and is displayed onscreen. /!\ This includes a mouse tracking in order to determine which priority users choose for each message:
 Template.messageBox.events({
     'click .predefinedMessage' : function (e){
         let w = window.innerWidth;
@@ -77,7 +82,7 @@ Template.messageBox.events({
             mouse = [e.x, e.y];
         });
 
-        // Updating displayed predifined messages
+        // Selection of message to send
         pm = document.getElementsByClassName("predefinedMessage");
 
         // Getting message's x1 and x2 position on screen
@@ -102,11 +107,13 @@ Template.messageBox.events({
             priority = "priority_low";
         }
 
+        // Identifying the user who is sending the message
         let groupId = localStorage.getItem("groupId");
         let user = Meteor.users.findOne({'_id' : Meteor.userId()}).username;
+        // The method is called to insert the new information in the database (server side) wich will then be displayed thanks to the helper
         Meteor.call("sentMessages.insert", e.target.innerText, priority, groupId, user);
 
-        // Waiting a bit to scroll down automatically so that when we send a message it appears at the bottom
+        // Scroll down automatically so that when a message is sent it appears at the bottom
         Meteor.setTimeout(function() {
             const s = document.getElementById('messages');
             s.scrollTop = s.scrollHeight;
@@ -114,7 +121,7 @@ Template.messageBox.events({
     },
 });
  
-// EVENTS for updating a group's name: 
+// Updating a group's name 
 Template.groupPage.events({
     'change #groupTitle' : function (e){
         let newName = e.target.value;
@@ -126,7 +133,7 @@ Template.groupPage.events({
     'click #goBack' : function(e){
         FlowRouter.go('menu');
     }, 
-    // Making sure that the admin has access to the group settings
+    // Rerouting to the settings page if the user is the admin of the group
     'click #groupSettings' : function(e){
         let groupId = localStorage.getItem("groupId");
         let adminGroup = groupCollection.find({'_id' : groupId}).fetch()[0].admin;
@@ -141,11 +148,12 @@ Template.groupPage.events({
     'click #typeMessage': function(e) {
         let messageBox = document.getElementById("messageBox");
         let messages = document.getElementById("messages");
-        // Displaying the message boxes with some styling: 
+        // Displaying the message box 
         messageBox.style.display = "flex";
+        // Blurring the background of pop-up
         messages.setAttribute("class", "blurred");
     },
-    // Styling messages we click on: 
+    // Clicking on the messages to make the pop-up disappear and the sentMessages visible again 
     'click #messages': function(e) {
         let mb = document.getElementById("messageBox");
         mb.style.display = "none";

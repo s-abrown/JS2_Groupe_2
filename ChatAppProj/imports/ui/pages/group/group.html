@@ -13,7 +13,7 @@
                 <div id="messages">
                     {{> groupMessages}}
                 </div>
-                <!-- Button to send a new message -->
+                <!-- Button to open the pop-up to send a new message -->
                 <div id="typeMessage">
                     Send message
                 </div>
@@ -31,25 +31,25 @@
     {{/unless}}
 </template>
 
-<!--FOR MESSAGE POP UP (predefined) -->
-<!-- Template for predefined messages -->
+<!--FOR MESSAGE POP UP -->
+<!-- Template for messages -->
 <template name="messageBox">
-    <!-- Display all the predefined messages on the page -->
+    <!-- Display all the predefined messages (messages set by the type of group) in the pop-up-->
     {{#each predefinedMessages}}
         {{> predefinedMessage}}
     {{/each}}
-    <!-- Display all the custom messages on the page -->
+    <!-- Display all the custom messages (messagges added by the admin in the settings page) in the pop-up-->
     {{#each customMessages}}
         {{> customMessage}}
     {{/each}}
 </template>
 
-<!-- Template for formatting all the predefined message -->
+<!-- Template for formatting and feed information for predefined messages -->
 <template name="predefinedMessage">
     <div class="predefinedMessage" id="{{_id}}">{{message}}</div>
 </template>
 
-<!-- Template for formatting all the custom message -->
+<!-- Template for formatting and feed information for custom messages -->
 <template name="customMessage">
     <div class="predefinedMessage" id="{{_id}}">{{message}}</div>
 </template>
@@ -62,16 +62,18 @@
     {{/each}}
 </template>
 
-<!-- To display messages: -->
+<!-- To display sent messages: -->
 <template name="displayMessage">
+    <!-- Priority of the message is fed through and heleper -->
     <div class="message {{priority}}">
-        <!-- Display the author of the message -->
+        <!-- Display the author of the message and the date (with time stamp)-->
         <div class="author">{{author}} ({{date}})</div>
         <!-- Display the message itself -->
         <div class="body">{{message}}</div>
     </div>
 </template>
 
+<!-- Input to change and display the group name -->
 <template name="groupName">
     <input type="text" id="groupTitle" placeholder="Group name" value="{{name}}">
 </template>
