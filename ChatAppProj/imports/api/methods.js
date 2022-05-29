@@ -2,8 +2,9 @@ import { check } from 'meteor/check';
 
 import { customMessagesCollection, predefinedMessagesCollection, sentMessagesCollection, groupCollection } from '../db/collections';
 
-// Method for the event below (displaying past messages from database):
+// METHODS
 Meteor.methods({
+    // Group page methods
     'sentMessages.insert'(m, priority, groupId, username) {
         // adding checks to make sure all these are strings
         check(m, String);
@@ -23,12 +24,21 @@ Meteor.methods({
             group: groupId
         });
     },
+    'group.update'(newName, groupId){
+        // adding checks to make sure group name and groupId are strings
+        check(newName, String);
+        check(groupId, String);
+        // Update name of group
+        groupCollection.update({_id: groupId}, {
+            $set:{name: newName}
+        });
+    },
+
+    // Home page (menu) method
     'group.createGroup'(id){
         // adding check to make sure usernames are strings
         check(id, String);
-
         let username = Meteor.users.findOne({'_id':id}).username;
-
         groupCollection.insert({
             name : 'Group name',
             admin : id, 
@@ -36,6 +46,8 @@ Meteor.methods({
             category: 'other'
         });
     },
+
+    // Group settings (manageGroup) methods
     'customMessages.insert'(m, gid){
         // adding checks to make sure messages are strings
         check(m, String);
@@ -51,30 +63,12 @@ Meteor.methods({
         check(id, String);
         customMessagesCollection.remove({_id:id});
     },
-    'group.update'(newName, groupId){
-        // adding checks to make sure group names are strings
-        check(newName, String);
-        check(groupId, String);
-        // Update name of group
-        groupCollection.update({_id: groupId}, {
-            $set:{name: newName}
-        });
-    },
     'group.category'(groupId, groupType){
         // adding checks to make sure group categories are strings
         check(groupId, String);
         check(groupType, String);
         groupCollection.update({_id: groupId}, {
             $set:{category: groupType}
-        });
-    },
-    'user.create'(username, password){
-        // adding checks to make sure this stuff are strings
-        check(username, String);
-        check(password, String);
-        return Accounts.createUser({
-            username: username,
-            password: password,
         });
     },
     'user.add'(username, groupId){
@@ -99,5 +93,15 @@ Meteor.methods({
         }
 
         return table;
+    },
+    // Sign up page method
+    'user.create'(username, password){
+        // adding checks to make sure this stuff are strings
+        check(username, String);
+        check(password, String);
+        return Accounts.createUser({
+            username: username,
+            password: password,
+        });
     }
 })
