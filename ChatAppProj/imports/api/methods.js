@@ -94,6 +94,7 @@ Meteor.methods({
 
         return table;
     },
+    
     // Sign up page method
     'user.create'(username, password){
         // adding checks to make sure this stuff are strings

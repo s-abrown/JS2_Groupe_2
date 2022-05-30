@@ -1,61 +1,42 @@
 <template name="groupPage">
-    <!-- Ensuring that you can only see this page if you're logged in with the unless/if statement-->
+    <!-- Ensuring that the user can only acess the page if logged in with the unless/if statement-->
     {{#unless loggingIn}}
         {{#if currentUser}}
             <div id="groupBox">
-                <!-- Top banner with infos and settings -->
+                <!-- Top banner with rerouting back to home, name of the group and point of access to the settings page -->
                 <div id="groupInfo">
                     <div id="goBack">Back</div>
                     {{> groupName}}
                     <div id="groupSettings">Settings</div>
                 </div>
-                <!-- All messages of the group displayed here -->
+                <!-- All sent messages of the group displayed here -->
                 <div id="messages">
                     {{> groupMessages}}
                 </div>
-                <!-- Button to open the pop-up to send a new message -->
+                <!-- Div to open the pop-up to send a new message -->
                 <div id="typeMessage">
                     Send message
                 </div>
-
-                <!-- Pop-up window to display predefined messages -->
+                <!-- Pop-up window to display predefined and custom messages to be sent -->
                 <div id="messageBox">
                     {{> messageBox}}
                 </div>
             </div>
-        <!-- If you're not logged in, you're sent to the 404 page-->
+        <!-- If user not logged in they are sent to 404 page -->
         {{else}}
-        <!-- This is the 404 page reroute-->
             {{> rr2nf_01}}
         {{/if}}
     {{/unless}}
 </template>
 
-<!--FOR MESSAGE POP UP -->
-<!-- Template for messages -->
-<template name="messageBox">
-    <!-- Display all the predefined messages (messages set by the type of group) in the pop-up-->
-    {{#each predefinedMessages}}
-        {{> predefinedMessage}}
-    {{/each}}
-    <!-- Display all the custom messages (messagges added by the admin in the settings page) in the pop-up-->
-    {{#each customMessages}}
-        {{> customMessage}}
-    {{/each}}
+<!-- GROUP NAME -->
+<!-- Input to change and display the group name -->
+<template name="groupName">
+    <input type="text" id="groupTitle" placeholder="Group name" value="{{name}}">
 </template>
 
-<!-- Template for formatting and feed information for predefined messages -->
-<template name="predefinedMessage">
-    <div class="predefinedMessage" id="{{_id}}">{{message}}</div>
-</template>
-
-<!-- Template for formatting and feed information for custom messages -->
-<template name="customMessage">
-    <div class="predefinedMessage" id="{{_id}}">{{message}}</div>
-</template>
-
-<!-- FOR SENT MESSAGES-->
-<!-- Messages to be displayed-->
+<!-- SENT MESSAGES-->
+<!-- Sent messages to be displayed-->
 <template name="groupMessages">
     {{#each sentMessages}}
         {{> displayMessage}}
@@ -73,10 +54,29 @@
     </div>
 </template>
 
-<!-- Input to change and display the group name -->
-<template name="groupName">
-    <input type="text" id="groupTitle" placeholder="Group name" value="{{name}}">
+<!-- POP UP -->
+<!-- Template for messages -->
+<template name="messageBox">
+    <!-- Display all the predefined messages (messages set by the type of group) in the pop-up-->
+    {{#each predefinedMessages}}
+        {{> predefinedMessage}}
+    {{/each}}
+    <!-- Display all the custom messages (messagges added by the admin in the settings page) in the pop-up-->
+    {{#each customMessages}}
+        {{> customMessage}}
+    {{/each}}
 </template>
 
-<!-- TEMPLATE TO REROUTE TO 404 PAGE IF USER IS NOT LOGGED IN -->
+<!-- Template for formatting and feeding information for predefined messages -->
+<template name="predefinedMessage">
+    <div class="predefinedMessage" id="{{_id}}">{{message}}</div>
+</template>
+
+<!-- Template for formatting and feeding information for custom messages -->
+<template name="customMessage">
+    <div class="predefinedMessage" id="{{_id}}">{{message}}</div>
+</template>
+
+<!-- 404 REROUTE -->
+<!-- If user not logged in -->
 <template name="rr2nf_01"></template>

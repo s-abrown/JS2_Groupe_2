@@ -13,7 +13,7 @@ if (Meteor.isClient){
     Meteor.subscribe('publishGroups');
 }
 
-// To automatically scroll down to the last message upon rendering the page:  
+// Automatically scroll down to the last sent message upon rendering the page:  
 Template.groupPage.onRendered(function() {
     // The Timeout was set to a 100 to allow for the data to be fed to the page before rendering
     Meteor.setTimeout(function() {
@@ -33,7 +33,7 @@ Template.messageBox.helpers({
     // For predefined messages: 
     predefinedMessages(){
         let groupId = localStorage.getItem("groupId");
-        // In the groupCollection we first fin the groupId with the right id and then look for it's type
+        // In the groupCollection we first find the group with the right id and then look for it's type (category)
         let categoryGroup = groupCollection.findOne({'_id' : groupId}).category;
         // Return the predifined messages that correspond to the specific group type
         return predefinedMessagesCollection.find({category: categoryGroup}).fetch({});
@@ -41,6 +41,7 @@ Template.messageBox.helpers({
     // For custom messages: 
     customMessages(){
         let groupId = localStorage.getItem("groupId");
+        // In the collection of custom messages those associated with a specific group are found and fetched
         return customMessagesCollection.find({group: groupId}).fetch();
     },
 });
@@ -63,7 +64,6 @@ Template.groupName.helpers({
         return returnedGroupName
     }
 });
-
 
 
 // EVENTS
@@ -113,7 +113,7 @@ Template.messageBox.events({
         // The method is called to insert the new information in the database (server side) wich will then be displayed thanks to the helper
         Meteor.call("sentMessages.insert", e.target.innerText, priority, groupId, user);
 
-        // Scroll down automatically so that when a message is sent it appears at the bottom
+        // Scroll down automatically once a message is sent
         Meteor.setTimeout(function() {
             const s = document.getElementById('messages');
             s.scrollTop = s.scrollHeight;
@@ -144,16 +144,15 @@ Template.groupPage.events({
             alert('You are not authorised to change the group settings.');
         }
     },
-    // fetching messages:
+    // Displaying the message box
     'click #typeMessage': function(e) {
         let messageBox = document.getElementById("messageBox");
-        let messages = document.getElementById("messages");
-        // Displaying the message box 
+        let messages = document.getElementById("messages"); 
         messageBox.style.display = "flex";
-        // Blurring the background of pop-up
+        // Blurring the background (sent messages)
         messages.setAttribute("class", "blurred");
     },
-    // Clicking on the messages to make the pop-up disappear and the sentMessages visible again 
+    // Clicking on the chat space to make the pop-up disappear and the sentMessages visible again 
     'click #messages': function(e) {
         let mb = document.getElementById("messageBox");
         mb.style.display = "none";
