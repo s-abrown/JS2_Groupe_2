@@ -3,11 +3,18 @@ import { Template } from 'meteor/templating';
 
 import './notFound.html'
 
-// No relevant collection not relevant subscriptions no relevant helpers for this page. 
+//--------//
+// HELPERS
+//--------//
 
-// EVENT:
+// None 
+
+//--------//
+// EVENTS
+//--------//
+
 Template.notFound.events({
-    //sends you back to the home page upon clicking the "back" div
+    // Redirects to home
     'click .text' :
     function (e) {
         FlowRouter.go('home');

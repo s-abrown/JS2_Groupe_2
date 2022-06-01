@@ -1,25 +1,27 @@
+<!-- Main template -->
 <template name="manageGroup">
+    <!-- Redirects to 404 if not logged -->
     {{#unless loggingIn}}
         {{#if currentUser}}
-            <!-- Page Title-->
+            <!-- Header -->
             <div id="manageGroupHeader">
                 <div id="goBack">Back</div>
                 <div id="title">Settings</div>
             </div>
 
-            <!-- Group Name Section -->
+            <!-- Group name section -->
             <div class="block_container">
                 <!-- Group name selection -->
                 <div id="group_title">
                     <div class="label">Group type</div>
                     <div id="group_type_container">
-                        <!-- Display the various types of groups you can choose from -->
+                        <!-- Displays types of groups -->
                         {{> groupTypesT}}
                     </div>
                 </div>
             </div>
 
-            <!-- Member selection section-->
+            <!-- Member display section -->
             <div class="block_container">
                 <!-- Member Editing Field -->
                 <div id="add_member">
@@ -29,9 +31,10 @@
                         <div class="add" id="button_add_member">Add</div>
                     </div>
                 </div>
+
                 <!-- Member List -->
                 <div id="member_list">
-                    <!-- Display the group members -->
+                    <!-- Displays the group members -->
                 {{#each getUsers}}
                     {{> members}}
                 {{/each}}
@@ -40,7 +43,7 @@
 
             <!-- Message selection section -->
             <div class="block_container">
-                <!-- Message Editing Field -->
+                <!-- Message editing field -->
                 <div id="message_selection">
                     <div class="label">Messages</div> 
                     <div id="message_edit_container">
@@ -48,6 +51,7 @@
                         <div class= "add" id="button_add_message">Add</div>
                     </div>
 
+                    <!-- Displays custom messages -->
                     {{#each customMessages}}
                         {{> cmt}}
                     {{/each}}
@@ -60,7 +64,7 @@
     {{/unless}}
 </template>
 
-<!-- Message editing space: -->
+<!-- Custom messages -->
 <template name="cmt">
     <div class="message_list_container" id="{{_id}}">
         <div class="message_list">{{message}}</div>
@@ -68,21 +72,24 @@
     </div>
 </template>
 
+<!-- Displays all members -->
 <template name="members">
     <div class="memberContainer" id="">
         <div class="member_list">{{username}}</div>
     </div> 
 </template>
 
+<!-- Displays all possible types -->
 <template name="groupTypesT">
     {{#each specGroupType}}
         {{> groupTypesTgroup}}
     {{/each}}
 </template>
 
+<!-- Group types HTML -->
 <template name="groupTypesTgroup">
     <div class="group_type {{class}}" id="{{name}}">{{name}}</div>
 </template>
 
-<!-- Rerouting to 404 page if not logged in -->
+<!-- 404 REROUTE -->
 <template name="rr2nf_02"></template>

@@ -1,9 +1,11 @@
+<!-- Main template -->
 <template name="home">
-    <!-- If a user is logged in they are redirected to the Menu page: -->
+    <!-- Redirects to 404 if not logged -->
     {{#unless loggingIn}}
         {{#if currentUser}}
             {{> rerouteToMenu}}
         {{else}}
+            <!-- Login form -->
             <div id="mainBox">
                 <img src="images/logo.png" alt="Logo">
                 <input id="userID" type="text" placeholder="User ID" required>
@@ -11,10 +13,11 @@
                 <input id="button" type="button" value="Login">
                 <a href="sign-up">Sign Up page</a>
             </div>
-            <!-- Importing the script for the Fire alert: -->
+            <!-- Imports script for the Fire alert -->
             <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         {{/if}}
     {{/unless}}
 </template>
 
+<!-- 404 REROUTE -->
 <template name="rerouteToMenu"></template> 

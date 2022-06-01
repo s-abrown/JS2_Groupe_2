@@ -4,8 +4,6 @@ import { groupCollection, predefinedMessagesCollection, customMessagesCollection
 
 import '/imports/api/methods';
 
-const addPredefinedMessages = message => predefinedMessagesCollection.insert(message)
-
 const messages = [
     // Category: Work
     {
@@ -76,30 +74,32 @@ const messages = [
     },
 ]
 
-// Publish collection from server to client
+// Inserts all predefined message in collection
+const addPredefinedMessages = message => predefinedMessagesCollection.insert(message)
+
+// Publishes collection of predifined messages
 Meteor.publish('predefinedMessages', function publishPredefinedMessages(){
     return predefinedMessagesCollection.find({});
 });
 
-// Publish collection from server to client of sent messages --> temporary, we will need to add the id_group
-Meteor.publish('sentMessages', function publishSentMessages(){
-    return sentMessagesCollection.find({});
-});
-
-// Publish groups --> only the ones in which the user is in
-Meteor.publish('publishGroups', function f(){
-    return groupCollection.find({});
-});
-
-// Publish custom messages for ManageGroup page
+// Publishes custom messages collections
 Meteor.publish('customMessages', function publishCustomMessages(){
     return customMessagesCollection.find({});
 });
 
-Meteor.startup(() => {
-    // Dropping (deleting stuff that is already in there) of the collection 
-    predefinedMessagesCollection.rawCollection().drop();
-    // Adding predefined messages to the collection
-    messages.forEach(addPredefinedMessages);
+// Publishes collection of sent messages 
+Meteor.publish('sentMessages', function publishSentMessages(){
+    return sentMessagesCollection.find({});
 });
 
+// Publishes group collection
+Meteor.publish('publishGroups', function f(){
+    return groupCollection.find({});
+});
+
+Meteor.startup(() => {
+    // Drops what is already in collection 
+    predefinedMessagesCollection.rawCollection().drop();
+    // Adds predefined messages to the collection
+    messages.forEach(addPredefinedMessages);
+});

@@ -1,5 +1,6 @@
+<!-- Main template -->
 <template name="menu">
-    <!-- Checking if user is logged in or not: -->
+    <!-- Redirects to 404 if not logged -->
     {{#unless LoggingIn }}
         {{#if currentUser}}
             <div id="menu">
@@ -12,26 +13,27 @@
                 </div>
             </div>
         {{else}}
-        <!-- If not logged in, reroute to 404 page -->
             {{> rr2nf_03}}
         {{/if}}
     {{/unless}}
 </template>
 
+<!-- Displays all groups -->
 <template name="allGroups">
-    <!-- Display groups: -->
     {{#each group}}
         {{> oneGroup}}
     {{/each}}
 </template>
 
+<!-- HTML formatting for one group -->
 <template name="oneGroup">
     <div class="groups" id="{{_id}}">{{name}}</div>
 </template>
 
+<!-- Displays username -->
 <template name="displayUsername">
     <div id="logout">Welcome, {{username}}</div>
 </template>
 
-<!-- Template to reroute to page 404 -->
+<!-- 404 REROUTE -->
 <template name="rr2nf_03"></template>

@@ -3,28 +3,40 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import './home.html';
 
-// EVENT to login - enter username and password:
+//--------//
+// HELPERS
+//--------//
+
+// None
+
+//--------//
+// EVENTS
+//--------//
 Template.home.events({
     'click #button'(e) {
+        // Gets values
         let username = document.getElementById("userID").value;
         let password = document.getElementById("password").value;
 
-        // ALERT using the fire script we imported in the HTML page: 
+        // Feedback alert 
         Meteor.loginWithPassword(username, password, function(err, res){
+            // If there is an error (hopefully not), displays a pretty alert
             if (err) {
                 Swal.fire(
                     'Error!',
                     err.message,
                     'error'
                   )
-            } else {
+            } 
+            // Redirects to menu
+            else {
                 FlowRouter.go("menu")
             }
         });
     }
 });
 
-// Rerouting to the menu if the user is already connected: 
+// Rerouts to menu if alread logged 
 Template.rerouteToMenu.onRendered(function(){
     FlowRouter.go("menu");
 });

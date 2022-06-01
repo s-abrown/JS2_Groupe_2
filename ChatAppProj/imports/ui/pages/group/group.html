@@ -1,6 +1,6 @@
 <!-- Main template -->
 <template name="groupPage">
-    <!-- Ensuring the user can only acess if logged -->
+    <!-- Redirects to 404 if not logged -->
     {{#unless loggingIn}}
         {{#if currentUser}}
             <div id="groupBox">

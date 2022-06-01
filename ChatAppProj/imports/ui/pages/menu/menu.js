@@ -7,39 +7,54 @@ import { groupCollection } from '/imports/db/collections';
 
 import './menu.html';
 
-// Subscribe the client to the collection for predefined messages to allow them to view messages: 
+// Subscribes to groups 
 if (Meteor.isClient){
     Meteor.subscribe('publishGroups');
 }
 
-// HELPER to feed data to the group template: 
+//--------//
+// HELPERS
+//--------//
+
+// Displays all groups
 Template.allGroups.helpers({
     group(){
-        // To return the group members in a group:
+        // Returns groups in which the user is
         return groupCollection.find({"users._id": Meteor.userId()}).fetch();
     },
 });
 
-//  HELPER to feed in the logged in user name and log out option
+// Displays username
 Template.displayUsername.helpers({
     username(){
+        // Returns username from db
         return Meteor.users.findOne({'_id' : Meteor.userId()}).username;
     }
 });
 
-// EVENT: upon clicking on + div, a new group is created: 
+//--------//
+// EVENTS
+//--------//
+
 Template.menu.events({
+    // Creates new group
     'click #newGroup' : function (e){
         Meteor.call("group.createGroup", Meteor.userId());
     },
+    // Redirects to clicked group
     'click .groups' : function (e){
+        // Gets group id
         let id = e.target.getAttribute("id");
+        // Sets group id
         localStorage.setItem("groupId", id);
+        // Reroutes
         FlowRouter.go("group")
     },
-    // Redirect to home page upon clicking the logout div
+    // Logs out
     'click #logout' : function(e){
+        // Logs out
         Meteor.logout(function(e){
+            // If no error (hopefully) redirects to home
             if(!e){
                 FlowRouter.go("home")
             }
@@ -47,7 +62,7 @@ Template.menu.events({
     }
 });
 
-// Reroute to page 404 if not logged in: 
+// Reroutes to 404 page
 Template.rr2nf_03.onRendered(function(){
     FlowRouter.go("notFound");
 });

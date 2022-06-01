@@ -7,49 +7,57 @@ import { customMessagesCollection, groupCollection } from '/imports/db/collectio
 
 import './manageGroup.html';
 
-// Custom messages subscription so that users can see displayed custom messages:
+// Subscription to custom messages
 if (Meteor.isClient){
     Meteor.subscribe('customMessages');
 }
 
-//  HELPERS to feed data to display custom messages and group memners:
+//--------//
+// HELPERS
+//--------//
+
+// Manage group
 Template.manageGroup.helpers({
-    // For custom messages:
+    // Custom messages
     customMessages(){
+        // Gets group id
         let groupId = localStorage.getItem("groupId");
+        // Returns custom messages for specific group
         return customMessagesCollection.find({group: groupId}).fetch();
     },
-    // For upadting the users in the group member list
+    // Members
     getUsers(){
-        // Display group members, filtered by group ID:
+        // Gets group id
         let groupId = localStorage.getItem("groupId");
+        // Gets all users from specific group
         let users = groupCollection.findOne({"_id": groupId}).users;
-
+        // Returns users
         return users;
     }
 });
 
-// Creating helpers for the group type:
+// Group type
 Template.groupTypesT.helpers({
     specGroupType(){
+        // Gets group id
         let groupId = localStorage.getItem("groupId");
+        // Gets group category
         let category = groupCollection.findOne({"_id": groupId}).category;
-         // Change colour of the group type category when you click on it
+        // Defines group types 
         let groupTypes = {"work" : 0, "travel" : 0, "friends" : 0, "other" : 0};
 
-        // Sets
+        // Sets current group type value to 1
         groupTypes[category] = 1;
 
-        // New array
         let allGroups = [];
 
         // Adds each group to array
         for(g in groupTypes){
+            // If the group is the one selected, add class
             let className = '';
 
-            // If the group is the one selected, add class
             if(groupTypes[g]){
-                className = 'selectedGroup';
+                let className = 'selectedGroup';
             }
 
             // Creates group object
@@ -63,41 +71,65 @@ Template.groupTypesT.helpers({
     }
 });
 
-// Reroute function to 404 page. 
-Template.rr2nf_02.onRendered(function(){
-    FlowRouter.go("notFound");
-});
+//--------//
+// EVENTS
+//--------//
 
-// EVENTS: 
 Template.manageGroup.events({
-    // Upon submitting a new message, message is displayed in the message list:
+    // Adds new (custom) message
     'click #button_add_message' : function (e) {
+        // Gets new message's text
         let customMessage = document.getElementById("input_add_message").value;
+        // Gets group id
         let groupId = localStorage.getItem("groupId");
+
+        // Checks types
         check(customMessage, String);
+
+        // Inserts new message server side
         Meteor.call('customMessages.insert', customMessage, groupId);
+
+        // Empties input
         document.getElementById("input_add_message").value = '';
     },  
-    // Delete a custom message
+    // Deletes (custom) message
     'click .message_x_button' : function (e) {
+        // Gets message id
         let id = e.target.parentNode.getAttribute("id");
+
+        // Deletes message server side
         Meteor.call('customMessages.delete', id);
     },
-    // Select a group type which will affect the predefined message list displayed
+    // Selects group type
     'click .group_type' : function (e) {
+        // Gets group type
         let groupType = e.target.getAttribute("id");
+        // Gets group id
         let groupId = localStorage.getItem("groupId");
+
+        // Sets new group type server side
         Meteor.call('group.category', groupId, groupType);
     },
-    // Reroute to group page upon clicking the "back" div:
+    // Back to menu
     'click #goBack' : function (e) {
         FlowRouter.go('group');
     },
-    // adding members to group list:
+    // Adds member
     'click #button_add_member' : function (e) {
+        // Gets input text (= user's name)
         let userName = document.getElementById("input_add_member").value;
+        // Gets group id
         let groupId = localStorage.getItem("groupId");
+
+        // Adds member server side
         Meteor.call('user.add', userName, groupId);
+
+        // Empties input
         document.getElementById("input_add_member").value = '';
     },
+});
+
+// Reroutes to 404 page
+Template.rr2nf_02.onRendered(function(){
+    FlowRouter.go("notFound");
 });

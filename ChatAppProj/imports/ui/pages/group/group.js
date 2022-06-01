@@ -6,69 +6,78 @@ import { predefinedMessagesCollection, sentMessagesCollection, customMessagesCol
 
 import './group.html';
 
-// Subscribe the client to the collections
+// Subscribe client to collections
 if (Meteor.isClient){
     Meteor.subscribe('predefinedMessages');
     Meteor.subscribe('sentMessages');
     Meteor.subscribe('publishGroups');
 }
 
-// Automatically scroll down to the last sent message upon rendering the page:  
+// Automatically scrolls down
 Template.groupPage.onRendered(function() {
-    // The Timeout was set to a 100 to allow for the data to be fed to the page before rendering
     Meteor.setTimeout(function() {
         const s = document.getElementById('messages');
         s.scrollTop = s.scrollHeight;
-    }, 100);
+    }, 100); // 100ms to wait for messages to be fed
 });
 
-// Reroute to 404 page if user is not logged in:
+// Reroute to 404 page
 Template.rr2nf_01.onRendered(function(){
     FlowRouter.go("notFound");
 });
 
+//---------//
 // HELPERS 
-// To feed the wanted data into the PREDEFINED messages and the CUSTOM messages: 
+//---------//
+
+// Feeds predifined and custom messages 
 Template.messageBox.helpers({
-    // For predefined messages: 
+   // Predifined messages
     predefinedMessages(){
+        // Gets group id
         let groupId = localStorage.getItem("groupId");
-        // In the groupCollection we first find the group with the right id and then look for it's type (category)
+        // Gets group category
         let categoryGroup = groupCollection.findOne({'_id' : groupId}).category;
-        // Return the predifined messages that correspond to the specific group type
+        // Returns predefined messages for found group category
         return predefinedMessagesCollection.find({category: categoryGroup}).fetch({});
     },
-    // For custom messages: 
+    // Custom messages: 
     customMessages(){
+        // Gets group id
         let groupId = localStorage.getItem("groupId");
-        // In the collection of custom messages those associated with a specific group are found and fetched
+        // Returns custom messages for specific group
         return customMessagesCollection.find({group: groupId}).fetch();
     },
 });
 
-// Creating the helper to feed data to the groupMessages template (sent messages):
+// Sent messages
 Template.groupMessages.helpers({
-    sentMessages(){ 
+    sentMessages(){
+        // Gets group id
         let groupId = localStorage.getItem("groupId");
-        // All the messages sent in the group are fetched here and displayed according to the template
+        // Returns sent messages for specific group
         return sentMessagesCollection.find({group: groupId}).fetch();
     },
 });
 
-// To feed the wanted data to display the name of a group: 
+// Name of the group
 Template.groupName.helpers({
     name(){
+        // Gets group id
         let groupId = localStorage.getItem("groupId");
-        // Display the group name
+        // Gets the group name from db based on group id
         let returnedGroupName = groupCollection.findOne({"_id": groupId}).name;
+        // Returns group name
         return returnedGroupName
     }
 });
 
-
+//--------//
 // EVENTS
-// Upon clicking on a message it gets sent and is displayed onscreen. /!\ This includes a mouse tracking in order to determine which priority users choose for each message:
+//--------//
+
 Template.messageBox.events({
+    // Pop up
     'click .predefinedMessage' : function (e){
         let w = window.innerWidth;
         let h = window.innerHeight;
@@ -94,6 +103,7 @@ Template.messageBox.events({
         // Defining intervals and checking mouse position
         let pos_x = e.offsetX
 
+        // Determining priority based on mouse position (and not div)
         if( (pos_x >= x1) && (pos_x < x1+inc) ){
             priority = "priority_high";
         }
@@ -107,13 +117,14 @@ Template.messageBox.events({
             priority = "priority_low";
         }
 
-        // Identifying the user who is sending the message
+        // Gets user who is sending the message
         let groupId = localStorage.getItem("groupId");
         let user = Meteor.users.findOne({'_id' : Meteor.userId()}).username;
-        // The method is called to insert the new information in the database (server side) wich will then be displayed thanks to the helper
+
+        // Calls method to insert message in db
         Meteor.call("sentMessages.insert", e.target.innerText, priority, groupId, user);
 
-        // Scroll down automatically once a message is sent
+        // Scrolls down automatically once a message is sent
         Meteor.setTimeout(function() {
             const s = document.getElementById('messages');
             s.scrollTop = s.scrollHeight;
@@ -121,41 +132,50 @@ Template.messageBox.events({
     },
 });
  
-// Updating a group's name 
+// Updates a group name 
 Template.groupPage.events({
     'change #groupTitle' : function (e){
+        // Gets new name
         let newName = e.target.value;
+        // Gets group id
         let groupId = localStorage.getItem("groupId");
-
+        // Updates server side
         Meteor.call("group.update", newName, groupId);
     },
-    // Reroute to the menu page upon clicking the go back div
+    // Reroutes to menu
     'click #goBack' : function(e){
         FlowRouter.go('menu');
     }, 
-    // Rerouting to the settings page if the user is the admin of the group
+    // Reroutes to settings (only for admin)
     'click #groupSettings' : function(e){
+        // Gets group id
         let groupId = localStorage.getItem("groupId");
+        // Finds admin of group
         let adminGroup = groupCollection.find({'_id' : groupId}).fetch()[0].admin;
+        // Gets user id
         let userId = Meteor.userId();
+        // Compares user id with group admin id
         if (adminGroup === userId){
             FlowRouter.go('manageGroup');
         } else {
             alert('You are not authorised to change the group settings.');
         }
     },
-    // Displaying the message box
+    // Displays pop up
     'click #typeMessage': function(e) {
         let messageBox = document.getElementById("messageBox");
-        let messages = document.getElementById("messages"); 
+        let messages = document.getElementById("messages");
+        // Displays pop up
         messageBox.style.display = "flex";
-        // Blurring the background (sent messages)
+        // Blurs the background (sent messages)
         messages.setAttribute("class", "blurred");
     },
-    // Clicking on the chat space to make the pop-up disappear and the sentMessages visible again 
+    // Hides pop up
     'click #messages': function(e) {
         let mb = document.getElementById("messageBox");
+        // Hides pop up
         mb.style.display = "none";
+        // Unblurs sent messages
         document.getElementById("messages").removeAttribute("class", "blurred");
     }
 });
