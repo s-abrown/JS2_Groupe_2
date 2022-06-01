@@ -1,28 +1,29 @@
+<!-- Main template -->
 <template name="groupPage">
-    <!-- Ensuring that the user can only acess the page if logged in with the unless/if statement-->
+    <!-- Ensuring the user can only acess if logged -->
     {{#unless loggingIn}}
         {{#if currentUser}}
             <div id="groupBox">
-                <!-- Top banner with rerouting back to home, name of the group and point of access to the settings page -->
+                <!-- Top banner (back, group name, settings) -->
                 <div id="groupInfo">
                     <div id="goBack">Back</div>
                     {{> groupName}}
                     <div id="groupSettings">Settings</div>
                 </div>
-                <!-- All sent messages of the group displayed here -->
+                <!-- Sent messages -->
                 <div id="messages">
                     {{> groupMessages}}
                 </div>
-                <!-- Div to open the pop-up to send a new message -->
+                <!-- Pop up button -->
                 <div id="typeMessage">
                     Send message
                 </div>
-                <!-- Pop-up window to display predefined and custom messages to be sent -->
+                <!-- Pop-up window -->
                 <div id="messageBox">
                     {{> messageBox}}
                 </div>
             </div>
-        <!-- If user not logged in they are sent to 404 page -->
+        <!-- If not logged, shows 404 page -->
         {{else}}
             {{> rr2nf_01}}
         {{/if}}
@@ -30,53 +31,50 @@
 </template>
 
 <!-- GROUP NAME -->
-<!-- Input to change and display the group name -->
+<!-- Input for group name -->
 <template name="groupName">
     <input type="text" id="groupTitle" placeholder="Group name" value="{{name}}">
 </template>
 
-<!-- SENT MESSAGES-->
-<!-- Sent messages to be displayed-->
+<!-- SENT MESSAGES -->
 <template name="groupMessages">
     {{#each sentMessages}}
         {{> displayMessage}}
     {{/each}}
 </template>
 
-<!-- To display sent messages: -->
+<!-- Display sent messages: -->
 <template name="displayMessage">
-    <!-- Priority of the message is fed through and heleper -->
+    <!-- Priority -->
     <div class="message {{priority}}">
-        <!-- Display the author of the message and the date (with time stamp)-->
+        <!-- Display author and date -->
         <div class="author">{{author}} ({{date}})</div>
-        <!-- Display the message itself -->
+        <!-- Display message body -->
         <div class="body">{{message}}</div>
     </div>
 </template>
 
 <!-- POP UP -->
-<!-- Template for messages -->
 <template name="messageBox">
-    <!-- Display all the predefined messages (messages set by the type of group) in the pop-up-->
+    <!-- Predefined messages -->
     {{#each predefinedMessages}}
         {{> predefinedMessage}}
     {{/each}}
-    <!-- Display all the custom messages (messagges added by the admin in the settings page) in the pop-up-->
+    <!-- Custom messages -->
     {{#each customMessages}}
         {{> customMessage}}
     {{/each}}
 </template>
 
-<!-- Template for formatting and feeding information for predefined messages -->
+<!-- Predefined messages HTML formatting -->
 <template name="predefinedMessage">
     <div class="predefinedMessage" id="{{_id}}">{{message}}</div>
 </template>
 
-<!-- Template for formatting and feeding information for custom messages -->
+<!-- Custom messages HTML formatting -->
 <template name="customMessage">
     <div class="predefinedMessage" id="{{_id}}">{{message}}</div>
 </template>
 
 <!-- 404 REROUTE -->
-<!-- If user not logged in -->
 <template name="rr2nf_01"></template>

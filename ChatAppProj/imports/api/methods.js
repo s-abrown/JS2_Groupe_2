@@ -2,20 +2,25 @@ import { check } from 'meteor/check';
 
 import { customMessagesCollection, predefinedMessagesCollection, sentMessagesCollection, groupCollection } from '../db/collections';
 
-// METHODS
 Meteor.methods({
+    //---------------------//
     // Group page methods
+    //---------------------//
+
+    // Inserts new message
     'sentMessages.insert'(m, priority, groupId, username) {
-        // adding checks to make sure all these are strings
+        // Checks types
         check(m, String);
         check(priority, String);
         check(groupId, String);
         check(username, String);
 
+        // Gets and formats new date
         let ts = new Date().getTime();
         let date = new Date(ts);
         date = ("00" + date.getDate()).substr(-2,2) + "." + ("00"+(Number(date.getMonth())+1)).substr(-2,2) + "." + date.getFullYear() + " " + ("00" + date.getHours()).substr(-2,2) + ":" + ("00" + date.getMinutes()).substr(-2,2);
 
+        // Inserts message in db 
         sentMessagesCollection.insert({
             author: username,
             date: date,
@@ -24,21 +29,31 @@ Meteor.methods({
             group: groupId
         });
     },
+    // Updates group name
     'group.update'(newName, groupId){
-        // adding checks to make sure group name and groupId are strings
+        // Checks types
         check(newName, String);
         check(groupId, String);
-        // Update name of group
+
+        // Updates name in db
         groupCollection.update({_id: groupId}, {
             $set:{name: newName}
         });
     },
 
+    //--------------------------//
     // Home page (menu) method
+    //--------------------------//
+
+    // Creates a new group
     'group.createGroup'(id){
-        // adding check to make sure usernames are strings
+        // Checks types
         check(id, String);
+
+        // Gets username from db
         let username = Meteor.users.findOne({'_id':id}).username;
+
+        // Inserts new group in db
         groupCollection.insert({
             name : 'Group name',
             admin : id, 
@@ -47,43 +62,67 @@ Meteor.methods({
         });
     },
 
+    //-------------------------------------//
     // Group settings (manageGroup) methods
+    //-------------------------------------//
+
+    // Creates a new custom message
     'customMessages.insert'(m, gid){
-        // adding checks to make sure messages are strings
+        // Checks types
         check(m, String);
         check(gid, String);
 
+        // Inserts a custom message in db
         customMessagesCollection.insert({
             message : m,
             group : gid,
         });
     },
+
+    // Deletes a custom message
     'customMessages.delete'(id){
-        // adding checks to make sure messages are strings
+        // Checks types
         check(id, String);
+
+        // Removes custom message from db
         customMessagesCollection.remove({_id:id});
     },
+
+    // Changes the group category
     'group.category'(groupId, groupType){
-        // adding checks to make sure group categories are strings
+        // Checks types
         check(groupId, String);
         check(groupType, String);
+
+        // Updates group category
         groupCollection.update({_id: groupId}, {
             $set:{category: groupType}
         });
     },
+
+    // Adds user to group
     'user.add'(username, groupId){
+        // Checks types
         check(username, String);
         check(groupId, String);
-        let thingToCheck = Meteor.users.findOne({'username':username})
 
-        if (thingToCheck){
+        // Finds user
+        let user = Meteor.users.findOne({'username':username})
+
+        // Adds user to db if they exist
+        if (user){
             groupCollection.update({_id: groupId}, {
-                $push:{users : {_id:thingToCheck._id, username: username}}
+                $push:{users : {_id:user._id, username: username}}
             });
         }
     },
+
+    // Displays group members
     'membersDisplay'(groupId){
+        // Finds users of a group
         let groupUsers = groupCollection.findOne({_id:groupId}).users;
+
+        // Stores users in a table as objects
         let table = [];
         for (i = 0; i < groupUsers.length; i++){
             let userId = groupUsers[i];
@@ -94,12 +133,18 @@ Meteor.methods({
 
         return table;
     },
-    
+
+    //---------------------//
     // Sign up page method
+    //---------------------//
+
+    // Creates a new user
     'user.create'(username, password){
-        // adding checks to make sure this stuff are strings
+        // Checks types
         check(username, String);
         check(password, String);
+
+        // Creates a new user with username and password
         return Accounts.createUser({
             username: username,
             password: password,
